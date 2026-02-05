@@ -34,13 +34,13 @@ export default function FacebookFeed({url}) {
 
       {/* PRAVÁ STRANA - FACEBOOK (Zaberá zvyšných 50%) */}
       <div className="w-full md:w-1/2 flex justify-center">
-        <div className="bg-gray-50 rounded-2xl p-4 sm:p-8 shadow-inner">
+        <div className="bg-gray-50 rounded-2xl p-3 sm:p-5 shadow-inner">
           {/* Tu som opravil class na className */}
           <div 
             className="fb-page" 
             data-href="https://www.facebook.com/profile.php?id=61579157963686" 
             data-tabs="timeline" 
-            data-width="330" 
+            data-width="350" 
             data-height="630" 
             data-small-header="false" 
             data-adapt-container-width="true" 
