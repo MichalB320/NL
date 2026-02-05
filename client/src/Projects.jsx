@@ -110,28 +110,7 @@ export function Projects() {
           })}
         </div>
 
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-br from-rose-50 to-amber-50 rounded-3xl p-8 md:p-12 max-w-3xl mx-auto shadow-lg">
-            <Heart className="w-16 h-16 text-rose-400 mx-auto mb-6" />
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">
-              Každá pomoc sa počíta
-            </h3>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">
-              Nie je dôležité, koľko dáte - dôležité je, že myslíte na druhých. 
-              Každý darovaný balíček, každé povzbudivé slovo a každý finančný príspevok 
-              znamená nádej pre niekoho, kto to naozaj potrebuje.
-            </p>
-            <button
-              onClick={() => {
-                const element = document.getElementById("kontakt");
-                if (element) element.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-rose-400 to-pink-400 text-white rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium"
-            >
-              Kontaktujte nás
-            </button>
-          </div>
-        </div>
+        
       </div>
     </section>
   );

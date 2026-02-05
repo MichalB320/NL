@@ -111,6 +111,12 @@ export function Header() {
                 Produkty
               </button>
               <button
+                onClick={() => scrollToSection("nase-projekty")}
+                className="text-gray-700 hover:text-rose-400 text-left"
+              >
+                Naše projekty
+              </button>
+              <button
                 onClick={() => scrollToSection("aktuality")}
                 className="text-gray-700 hover:text-rose-400 text-left"
               >
