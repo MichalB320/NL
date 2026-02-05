@@ -30,22 +30,6 @@ export default function FacebookFeed({url}) {
           Buďte v kontakte s našimi najnovšími aktivitami, podujatiami a príspevkami.
           Sledujte nás na Facebooku a staňte sa súčasťou našej komunity.
         </p>
-
-        {/* Sociálne siete pod textom */}
-        <div className="mt-8">
-          <p className="text-gray-600 mb-4">Nájdete nás aj na ďalších platformách:</p>
-          <div className="flex justify-center md:justify-start gap-4">
-            <a
-              href="https://www.facebook.com/profile.php?id=61579157963686"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Facebook className="mr-2" size={20} />
-              Facebook
-            </a>
-          </div>
-        </div>
       </div>
 
       {/* PRAVÁ STRANA - FACEBOOK (Zaberá zvyšných 50%) */}
@@ -56,8 +40,8 @@ export default function FacebookFeed({url}) {
             className="fb-page" 
             data-href="https://www.facebook.com/profile.php?id=61579157963686" 
             data-tabs="timeline" 
-            data-width="500" 
-            data-height="700" 
+            data-width="330" 
+            data-height="630" 
             data-small-header="false" 
             data-adapt-container-width="true" 
             data-hide-cover="false" 

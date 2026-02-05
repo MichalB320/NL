@@ -1,4 +1,4 @@
-import { Facebook, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,14 +9,14 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Nezisková organizácia</h3>
+            <h3 className="text-xl font-bold mb-4">Nebuď Ľahostajný</h3>
             <p className="text-gray-400 mb-4">
               Spolu tvoríme lepšiu budúcnosť pre našu komunitu. 
               Pridajte sa k nám a buďte súčasťou pozitívnej zmeny.
             </p>
             <div className="flex gap-4">
               <a
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/profile.php?id=61579157963686"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
@@ -24,6 +24,16 @@ export default function Footer() {
               >
                 <Facebook size={20} />
               </a>
+              <a
+                href="https://www.instagram.com/nebud_lahostajny/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+
             </div>
           </div>
 
@@ -45,12 +55,12 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => {
-                    const element = document.getElementById("produkty");
+                    const element = document.getElementById("nase-projekty");
                     if (element) element.scrollIntoView({ behavior: "smooth" });
                   }}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Produkty
+                  Naše projekty
                 </button>
               </li>
               <li>

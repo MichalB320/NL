@@ -9,7 +9,7 @@ import Footer from './Footer.jsx'
 import { About } from './About.jsx'
 import Products from './Products.jsx'
 import FacebookFedd from './FacebookFeed.jsx'
-import Contact from './Contact.jsx'
+import { Contact } from './Contact.jsx'
 import { HelpButton } from './HelpButton'
 import { Projects } from './Projects.jsx'
 
@@ -23,7 +23,6 @@ function App() {
         <Hero />
         <About />
         <Projects />
-        <Products />
         <FacebookFedd url={mojadresa}/>
         <Contact />
       </main>

@@ -8,8 +8,10 @@ export function Header() {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
       setMobileMenuOpen(false);
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: "smooth" });
+      }, 10);
     }
   };
 
@@ -46,25 +48,7 @@ export function Header() {
             >
               Naše projekty
             </button>
-            <button
-              onClick={() => scrollToSection("financny-prispevok")}
-              className="text-gray-700 hover:text-rose-400 transition-colors"
-            >
-              Finančný príspevok
-            </button>
-            <button
-              onClick={() => scrollToSection("dobrovolnictvo")}
-              className="text-gray-700 hover:text-rose-400 transition-colors"
-            >
-              Dobrovoľníctvo
-            </button>
-
-            <button
-              onClick={() => scrollToSection("produkty")}
-              className="text-gray-700 hover:text-rose-400 transition-colors"
-            >
-              Produkty
-            </button>
+           
             <button
               onClick={() => scrollToSection("aktuality")}
               className="text-gray-700 hover:text-rose-400 transition-colors"
@@ -103,12 +87,6 @@ export function Header() {
                 className="text-gray-700 hover:text-rose-400 text-left"
               >
                 O nás
-              </button>
-              <button
-                onClick={() => scrollToSection("produkty")}
-                className="text-gray-700 hover:text-rose-400 text-left"
-              >
-                Produkty
               </button>
               <button
                 onClick={() => scrollToSection("nase-projekty")}
