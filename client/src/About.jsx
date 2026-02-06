@@ -1,4 +1,4 @@
-import { Heart, HandHeart, Smile, Sparkles } from "lucide-react";
+import { Heart, Sparkles } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback.jsx";
 import Mariola from './assets/mariola.jpg';
 
@@ -12,7 +12,7 @@ export function About() {
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Glass card container */}
-        <div className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 p-8 md:p-12 lg:p-16">
+        <div className="bg-white/70  rounded-3xl shadow-2xl border border-white/30 p-5 md:p-12 lg:p-16">
           
 
           {/* Team Section */}
@@ -22,7 +22,7 @@ export function About() {
             </h3>
 
             {/* Founder Profile */}
-            <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-amber-50/80 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-xl border border-white/40">
+            <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-amber-50/80 backdrop-blur-lg rounded-3xl p-6 md:p-12 shadow-xl border border-white/40">
               <div className="grid md:grid-cols-3 gap-8 items-start">
                 <div className="md:col-span-1">
                   <div className="relative">
@@ -66,7 +66,7 @@ export function About() {
             </div>
 
             {/* Team Member Profile */}
-            <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-amber-50/80 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-xl border border-white/40">
+            <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-amber-50/80 backdrop-blur-lg rounded-3xl p-6 md:p-12 shadow-xl border border-white/40">
               <div className="grid md:grid-cols-3 gap-8 items-start">
                 <div className="md:col-span-1">
                   <div className="relative">
