@@ -21,11 +21,10 @@ export function About() {
             </h3>
 
             {/* Founder Profile */}
-            <div className="bg-gradient-to-br from-rose-50/80 to-amber-50/80 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-xl border border-white/40">
+            <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-amber-50/80 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-xl border border-white/40">
               <div className="grid md:grid-cols-3 gap-8 items-start">
                 <div className="md:col-span-1">
                   <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-r from-rose-400/30 to-pink-400/30 rounded-2xl blur-xl"></div>
                     <div className="relative rounded-2xl overflow-hidden shadow-xl ring-4 ring-white/50">
                       <ImageWithFallback
                         src="https://images.unsplash.com/photo-1552406416-272abc535d27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMHBvcnRyYWl0JTIwd2FybSUyMGNhcmluZ3xlbnwxfHx8fDE3NzAyNzczODh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
@@ -36,7 +35,7 @@ export function About() {
                   </div>
                   <div className="text-center mt-6 bg-white/60 backdrop-blur-sm rounded-2xl p-4 shadow-md">
                     <h4 className="text-2xl font-bold text-gray-800 mb-1">Mariola Janíková</h4>
-                    <p className="text-rose-500 font-medium">Zakladateľka OZ Nebuď ľahostajný</p>
+                    <p className="text-[#81007f] font-medium">Zakladateľka OZ Nebuď ľahostajný</p>
                   </div>
                 </div>
                 
@@ -54,9 +53,9 @@ export function About() {
                     <p className="text-gray-700 leading-relaxed mb-4">
                       Za sebou mám niekoľko akreditovaných výcvikov: krízovú intervenciu, psychologickú a sociálnu pomoc v krízových situáciách prostredníctvom internetu a tiež odborných výcvikov projektový špecialista, projektový manažér, motivačné rozhovory v práci s klientami v sociálnoprávnej ochrane detí a sociálnej kurately, prípadová sociálna práca, sociálna práca a sociálne služby, metódy a techniky sociálnej práce a iné.
                     </p>
-                    <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border-l-4 border-rose-400 shadow-md">
+                    <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border-l-4 border-[#81007f] shadow-md">
                       <p className="text-gray-700 leading-relaxed flex items-center">
-                        <Heart className="text-rose-400 mr-2 flex-shrink-0 fill-rose-400" size={20} />
+                        <Heart className="text-red-500 mr-2 flex-shrink-0 fill-red-500" size={20} />
                         <strong>Nebuď ľahostajný nie je len názov - je to moja životná cesta. A budem rada, ak sa na ňu pridáte aj vy.</strong>
                       </p>
                     </div>
@@ -66,11 +65,11 @@ export function About() {
             </div>
 
             {/* Team Member Profile */}
-            <div className="bg-gradient-to-br from-white/80 to-pink-50/80 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-xl border border-white/40">
+            <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-amber-50/80 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-xl border border-white/40">
               <div className="grid md:grid-cols-3 gap-8 items-start">
                 <div className="md:col-span-1">
                   <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-r from-pink-400/30 to-rose-400/30 rounded-2xl blur-xl"></div>
+                    
                     <div className="relative rounded-2xl overflow-hidden shadow-xl ring-4 ring-white/50">
                       <ImageWithFallback
                         src="https://images.unsplash.com/photo-1563263427-708318a97183?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RoZXIlMjBjaGlsZHJlbiUyMGZhbWlseSUyMHdhcm18ZW58MXx8fHwxNzcwMjc3Mzg4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
@@ -81,7 +80,7 @@ export function About() {
                   </div>
                   <div className="text-center mt-6 bg-white/60 backdrop-blur-sm rounded-2xl p-4 shadow-md">
                     <h4 className="text-2xl font-bold text-gray-800 mb-1">Lesana</h4>
-                    <p className="text-rose-500 font-medium">Členka tímu</p>
+                    <p className="text-[#81007f] font-medium">Členka tímu</p>
                   </div>
                 </div>
                 
@@ -93,7 +92,7 @@ export function About() {
                     <p className="text-gray-700 leading-relaxed mb-4">
                       Organizuje zbierky, pomáha obetiam domáceho násilia a stojí po boku žien, ktoré potrebujú oporu. Počúva, motivuje a sprevádza.
                     </p>
-                    <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border-l-4 border-pink-400 shadow-md">
+                    <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border-l-4 border-[#81007f] shadow-md">
                       <p className="text-gray-700 leading-relaxed flex items-center">
                         <Sparkles className="text-pink-400 mr-2 flex-shrink-0" size={20} />
                         <strong>Je dôkazom toho, že aj bežný človek môže byť silnou oporou pre iných.</strong>

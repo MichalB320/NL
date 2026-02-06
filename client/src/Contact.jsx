@@ -68,8 +68,8 @@ export function Contact() {
                       key={index}
                       className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 flex-col items-center text-center"
                     >
-                      <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-rose-100 to-pink-100 rounded-xl mb-4 self-center">
-                        <IconComponent className="text-rose-500" size={24} />
+                      <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-xl mb-4 self-center">
+                        <IconComponent className="text-purple-600" size={24} />
                       </div>
                       <h3 className="text-lg font-semibold text-gray-800 mb-3">
                         {info.title}

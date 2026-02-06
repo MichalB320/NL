@@ -43,7 +43,7 @@ export default function FacebookFeed({url}) {
             data-width="350" 
             data-height="630" 
             data-small-header="false" 
-            data-adapt-container-width="true" 
+            data-adapt-container-width="false" 
             data-hide-cover="false" 
             data-show-facepile="true"
           >

@@ -41,7 +41,7 @@ export function Projects() {
   ];
 
   return (
-    <section id="nase-projekty" className="py-20 bg-gradient-to-b from-white to-rose-50">
+    <section id="nase-projekty" className="py-20 bg-gradient-to-b from-white to-purple-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -50,9 +50,9 @@ export function Projects() {
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
             Vaša pomoc môže mať mnoho podôb. Vyberte si tú, ktorá je vám najbližšia.
           </p>
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-rose-100 to-pink-100 rounded-full">
-            <Heart className="text-rose-500 w-5 h-5 fill-rose-500" />
-            <span className="font-semibold text-gray-800">Podaj pomocnú ruku</span>
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] rounded-full">
+            <Heart className="text-white w-5 h-5 fill-white" />
+            <span className="font-semibold text-white">Podaj pomocnú ruku</span>
           </div>
         </div>
 
@@ -74,8 +74,8 @@ export function Projects() {
                   </div>
                   <div className="md:col-span-3 p-8 md:p-10">
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-rose-100 to-pink-100 rounded-xl flex items-center justify-center">
-                        <IconComponent className="text-rose-500" size={28} />
+                      <div className="flex-shrink-0 w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center">
+                        <IconComponent className="text-[#81007f]" size={28} />
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-gray-800 mb-3">
@@ -84,7 +84,7 @@ export function Projects() {
                         <p className="text-gray-600 leading-relaxed mb-4">
                           {project.description}
                         </p>
-                        <div className="bg-gradient-to-r from-rose-50 to-amber-50 rounded-xl p-4 border-l-4 border-rose-400">
+                        <div className="bg-gradient-to-r from-rose-50 to-amber-50 rounded-xl p-4 border-l-4 border-[#81007f]">
                           <p className="text-gray-700 leading-relaxed font-medium">
                             💝 {project.help}
                           </p>
@@ -97,7 +97,7 @@ export function Projects() {
                           const element = document.getElementById("kontakt");
                           if (element) element.scrollIntoView({ behavior: "smooth" });
                         }}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-rose-400 to-pink-400 text-white rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] text-white rounded-full hover:bg-[#6a0069] hover:shadow-lg hover:scale-105 transition-all duration-300"
                       >
                         <Heart className="w-4 h-4 fill-white" />
                         Chcem pomôcť

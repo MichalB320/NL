@@ -17,7 +17,7 @@ function App() {
   const mojadresa = "https://www.facebook.com/profile.php?id=61579157963686";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-100 via-pink-50 to-amber-100">
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-violet-50 to-indigo-100">
       <Header />
       <main>
         <Hero />
