@@ -17,8 +17,8 @@ export function Hero() {
       {/* Dekoračný fialový kruh */}
       <div className="absolute bottom-15 right-15 w-90 h-90 bg-purple-300/20 rounded-full blur-3xl"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-        <div className="bg-white/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 md:p-10 lg:p-15">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-28">
+        <div className="bg-white/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 md:p-10 lg:py-10">
           
           {/* Štítok s textom - upravený na fialovo */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100/50 backdrop-blur-sm rounded-full border border-purple-200/50 mb-6">
@@ -31,7 +31,7 @@ export function Hero() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative">
               {/* Box okolo loga s jemným fialovým tieňom */}
-              <div className="rounded-3xl overflow-hidden shadow-2xl p-10 m-10 bg-white/40">
+              <div className="rounded-3xl overflow-hidden shadow-2xl p-7 m-5 lg:m-20 bg-white/40">
                 <ImageWithFallback
                   src={Logo}
                   alt="Logo Nebuď Ľahostajný"
