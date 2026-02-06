@@ -12,7 +12,7 @@ export function Hero() {
 
   return (
     // Zmena pozadia na fialové tóny
-    <section id="domov" className="min-h-screen relative bg-gradient-to-br from-purple-50 via-violet-50 to-indigo-50">
+    <section id="domov" className="min-h-screen relative bg-gradient-to-br from-purple-80 via-violet-80 to-indigo-100">
       
       {/* Dekoračný fialový kruh */}
       <div className="absolute bottom-15 right-15 w-90 h-90 bg-purple-300/20 rounded-full blur-3xl"></div>
@@ -29,6 +29,17 @@ export function Hero() {
           </div>
  
           <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              {/* Box okolo loga s jemným fialovým tieňom */}
+              <div className="rounded-3xl overflow-hidden shadow-2xl p-10 m-10 bg-white/40">
+                <ImageWithFallback
+                  src={Logo}
+                  alt="Logo Nebuď Ľahostajný"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+
             <div>
               <h2 className="text-xl md:text-2xl lg:text-5xl font-bold text-gray-800 mb-6 leading-tight">
                 Podaj pomocnú ruku
@@ -54,17 +65,6 @@ export function Hero() {
                 >
                   Naše príbehy
                 </button>
-              </div>
-            </div>
-
-            <div className="relative">
-              {/* Box okolo loga s jemným fialovým tieňom */}
-              <div className="rounded-3xl overflow-hidden shadow-2xl p-10 m-10 bg-white/40">
-                <ImageWithFallback
-                  src={Logo}
-                  alt="Logo Nebuď Ľahostajný"
-                  className="w-full h-auto"
-                />
               </div>
             </div>
           </div>
