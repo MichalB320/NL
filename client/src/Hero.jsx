@@ -41,7 +41,7 @@ export function Hero() {
             </div>
 
             <div>
-              <h2 className="text-xl md:text-2xl lg:text-5xl font-bold text-gray-800 mb-6 leading-tight">
+              <h2 className="text-2xl md:text-2xl lg:text-5xl font-bold text-gray-800 mb-6 leading-tight">
                 Podaj pomocnú ruku
               </h2>
               <p className="text-base md:text-base text-gray-600 mb-8 leading-relaxed text-left">
