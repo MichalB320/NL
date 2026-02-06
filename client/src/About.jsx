@@ -1,5 +1,6 @@
 import { Heart, HandHeart, Smile, Sparkles } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback.jsx";
+import Mariola from './assets/mariola.jpg';
 
 export function About() {
   
@@ -27,7 +28,7 @@ export function About() {
                   <div className="relative">
                     <div className="relative rounded-2xl overflow-hidden shadow-xl ring-4 ring-white/50">
                       <ImageWithFallback
-                        src="https://images.unsplash.com/photo-1552406416-272abc535d27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMHBvcnRyYWl0JTIwd2FybSUyMGNhcmluZ3xlbnwxfHx8fDE3NzAyNzczODh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                        src={ Mariola }
                         alt="Zakladateľka OZ"
                         className="w-full h-auto"
                       />
