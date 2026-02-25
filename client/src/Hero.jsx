@@ -52,7 +52,7 @@ export function Hero() {
                 {/* Hlavné tlačidlo - tvoja fialová #81007f */}
                 <button
                   onClick={() => scrollToSection("kontakt")}
-                  className="inline-flex items-center justify-center px-8 py-4 bg-[#81007f] text-white rounded-full hover:bg-[#6a0069] hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-[#81007f] text-white rounded-full hover:bg-[#6a0069] hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md cursor-pointer"
                 >
                   <Heart className="mr-2 w-5 h-5 fill-white" />
                   Chcem pomôcť
@@ -61,7 +61,7 @@ export function Hero() {
                 {/* Sekundárne tlačidlo - fialový obrys */}
                 <button
                   onClick={() => scrollToSection("o-nas")}
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-purple-200 text-[#81007f] rounded-full hover:bg-purple-50 transition-all duration-300 font-medium"
+                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-purple-200 text-[#81007f] rounded-full hover:bg-purple-50 transition-all duration-300 font-medium cursor-pointer"
                 >
                   Naše príbehy
                 </button>

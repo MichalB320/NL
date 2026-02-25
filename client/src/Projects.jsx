@@ -97,7 +97,7 @@ export function Projects() {
                           const element = document.getElementById("kontakt");
                           if (element) element.scrollIntoView({ behavior: "smooth" });
                         }}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] text-white rounded-full hover:bg-[#6a0069] hover:shadow-lg hover:scale-105 transition-all duration-300"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] text-white rounded-full hover:bg-[#6a0069] hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
                       >
                         <Heart className="w-4 h-4 fill-white" />
                         Chcem pomôcť

@@ -1,6 +1,8 @@
 import { Heart, Sparkles } from "lucide-react";
 import Mariola from './assets/mariola.jpg';
 import Lenka from './assets/lenka.jpg';
+import Lesana from './assets/lesana.jpg';
+import Dominika from './assets/dominika.jpg';
 import { TeamMember } from './components/TeamMember.jsx';
 
 export function About() {
@@ -40,13 +42,27 @@ export function About() {
       id: 3,
       name: "Lesana",
       role: "Členka tímu",
-      image: "https://images.unsplash.com/photo-1563263427-708318a97183?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RoZXIlMjBjaGlsZHJlbiUyMGZhbWlseSUyMHdhcm18ZW58MXx8fHwxNzcwMjc3Mzg4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: Lesana,
       icon: Sparkles,
       quote: "Je dôkazom toho, že aj bežný človek môže byť silnou oporou pre iných.",
       description: (
       <>
         <p key="p1" className="text-gray-700 text-center md:text-left leading-relaxed mb-4"><strong>Lesana</strong> je členkou nášho tímu. Je to mama troch detí, ktorá má veľké srdce a dlhodobo sa venuje podpore žien v ťažkých životných situáciách.</p>
         <p key="p2" className="text-gray-700 text-center md:text-left leading-relaxed mb-4">Organizuje zbierky, pomáha obetiam domáceho násilia a stojí po boku žien, ktoré potrebujú oporu. Počúva, motivuje a sprevádza.</p>
+      </>
+      )
+    },
+    {
+      id: 3,
+      name: "Dominika",
+      role: "Členka tímu",
+      image: Dominika,//"https://images.unsplash.com/photo-1563263427-708318a97183?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RoZXIlMjBjaGlsZHJlbiUyMGZhbWlseSUyMHdhcm18ZW58MXx8fHwxNzcwMjc3Mzg4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      icon: Sparkles,
+      quote: "...",
+      description: (
+      <>
+        <p key="p1" className="text-gray-700 text-center md:text-left leading-relaxed mb-4"><strong>Dominika</strong>...</p>
+        <p key="p2" className="text-gray-700 text-center md:text-left leading-relaxed mb-4">...</p>
       </>
       )
     }

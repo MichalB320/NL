@@ -16,17 +16,17 @@ export default function FacebookFeed({url}) {
     <div className="flex flex-col md:flex-row gap-12 items-center">
       
       {/* ĽAVÁ STRANA - TEXT (Zaberá 50% na počítači) */}
-      <div className="flex flex-col md:w-1/2 text-center md:text-left"> 
-        <div className="inline-flex items-center justify-center md:justify-start">
+      <div className="flex flex-col md:w-1/2 text-center md:text-center"> 
+        <div className="inline-flex items-center justify-center md:justify-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
             <Facebook className="text-blue-600" size={32} />
           </div>
         </div>
         
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <h2 className="text-3xl md:text-4xl text-center font-bold text-gray-900 mb-4">
           Sledujte naše aktuality
         </h2>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-center text-gray-600">
           Buďte v kontakte s našimi najnovšími aktivitami, podujatiami a príspevkami.
           Sledujte nás na Facebooku a staňte sa súčasťou našej komunity.
         </p>

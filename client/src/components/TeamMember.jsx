@@ -11,7 +11,7 @@ export function TeamMember({ name, role, description, image, icon: Icon, quote }
   }
 
   return (
-    <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-amber-50/80 backdrop-blur-lg rounded-3xl p-6 md:p-12 shadow-xl border border-white/40">
+    <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-amber-50/80 backdrop-blur-none lg:backdrop-blur-lg rounded-3xl p-6 md:p-12 shadow-xl border border-white/40">
       <div className="grid md:grid-cols-3 gap-8 items-start">
                 
         {/* Foto a meno */}
@@ -26,7 +26,7 @@ export function TeamMember({ name, role, description, image, icon: Icon, quote }
             </div>
           </div>
 
-          <div className="text-center mt-6 bg-white/60 backdrop-blur-sm rounded-2xl p-4 shadow-md">
+          <div className="text-center mt-6 bg-white/60 backdrop-blur-none lg:backdrop-blur-sm rounded-2xl p-4 shadow-md">
             <h4 className="text-2xl font-bold text-gray-800 mb-1">{ name }</h4>
             <p className="text-[#81007f] font-medium">{ role }</p>
           </div>
@@ -36,7 +36,7 @@ export function TeamMember({ name, role, description, image, icon: Icon, quote }
         <div className="md:col-span-2">
           <div className="prose prose-lg max-w-none">
             { description }
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border-l-4 border-[#81007f] shadow-md">
+            <div className="bg-white/80 backdrop-blur-none lg:backdrop-blur-lg rounded-xl p-4 border-l-4 border-[#81007f] shadow-md">
               <p className="text-gray-700 leading-relaxed flex items-center">
                 { Icon && <Icon className={ iconClass } size={ 20 } /> }
                 <strong>{ quote }</strong>
