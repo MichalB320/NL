@@ -56,55 +56,60 @@ export function Projects() {
           </div>
         </div>
 
-        <div className="space-y-8">
+        <div className="flex overflow-x-auto gap-4 pb-10 snap-x snap-mandatory px-3">
           {projects.map((project, index) => {
             const IconComponent = project.icon;
             return (
               <div
                 key={index}
-                className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                className="min-w-[80vw] md:min-w-[400px] snap-center bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <div className="grid md:grid-cols-5 gap-0">
-                  <div className="md:col-span-2 h-64 md:h-auto">
-                    <ImageWithFallback
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="md:col-span-3 p-8 md:p-10">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="flex-shrink-0 w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center">
-                        <IconComponent className="text-[#81007f]" size={28} />
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                <div className="h-44">
+                  <ImageWithFallback
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="p-6 md:p-8">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div>
+                      <div className="flex flex items-center gap-4 mb-3">
+                        <div className="flex-shrink-0 w-9 h-9 bg-purple-50 rounded-xl flex items-center justify-center">
+                          <IconComponent className="text-[#81007f]" size={19} />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-800">
                           {project.title}
                         </h3>
-                        <p className="text-gray-600 leading-relaxed mb-4">
-                          {project.description}
+                      </div>
+                      
+                      <p className="text-gray-600 leading-relaxed mb-4 text-center text-sm">
+                        {project.description}
+                      </p>
+                      <div className="bg-gradient-to-r from-rose-50 to-amber-50 rounded-xl p-4 border-l-4 border-[#81007f]">
+                        <p className="text-gray-700 leading-relaxed font-medium text-xs">
+                          💝 {project.help}
                         </p>
-                        <div className="bg-gradient-to-r from-rose-50 to-amber-50 rounded-xl p-4 border-l-4 border-[#81007f]">
-                          <p className="text-gray-700 leading-relaxed font-medium">
-                            💝 {project.help}
-                          </p>
-                        </div>
                       </div>
                     </div>
-                    <div className="mt-6">
-                      <button
-                        onClick={() => {
-                          const element = document.getElementById("kontakt");
-                          if (element) element.scrollIntoView({ behavior: "smooth" });
-                        }}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] text-white rounded-full hover:bg-[#6a0069] hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
-                      >
-                        <Heart className="w-4 h-4 fill-white" />
-                        Chcem pomôcť
-                      </button>
-                    </div>
                   </div>
+
+                  <div className="mt-6 text-center">
+                    <button
+                      onClick={() => {
+                        const element = document.getElementById("kontakt");
+                        if (element) element.scrollIntoView({ behavior: "smooth" });
+                      }}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] text-white rounded-full hover:bg-[#6a0069] hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                    >
+                      <Heart className="w-4 h-4 fill-white" />
+                      Chcem pomôcť
+                    </button>
+                  </div>
+
                 </div>
+                
               </div>
             );
           })}

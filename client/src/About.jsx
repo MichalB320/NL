@@ -58,11 +58,10 @@ export function About() {
       role: "Členka tímu",
       image: Dominika,//"https://images.unsplash.com/photo-1563263427-708318a97183?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RoZXIlMjBjaGlsZHJlbiUyMGZhbWlseSUyMHdhcm18ZW58MXx8fHwxNzcwMjc3Mzg4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       icon: Sparkles,
-      quote: "...",
+      quote: "",
       description: (
       <>
-        <p key="p1" className="text-gray-700 text-center md:text-left leading-relaxed mb-4"><strong>Dominika</strong>...</p>
-        <p key="p2" className="text-gray-700 text-center md:text-left leading-relaxed mb-4">...</p>
+        <p key="p1" className="text-gray-700 text-center md:text-left leading-relaxed mb-4"><strong>Dominika</strong> je plnohodnotnou členkou nášho tímu. Má bohaté skúsenosti s prácou s ľuďmi, je prirodzene spoločenská a ku každej výzve pristupuje s odhodlaním a riešením. Žiadny problém pre ňu nie je neriešiteľný – vždy hľadá cestu, ako veci posunúť vpred. Do tímu prináša energiu, elán a pozitívnu náladu, ktorá je často nákazlivá a motivuje aj ostatných.</p>
       </>
       )
     }

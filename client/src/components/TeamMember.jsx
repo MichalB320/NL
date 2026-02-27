@@ -3,12 +3,13 @@ import { ImageWithFallback } from "../figma/ImageWithFallback"
 
 export function TeamMember({ name, role, description, image, icon: Icon, quote }) {
   let iconClass = "mr-2 flex-shrink-0";
+  let quoteBar = quote;
   
   if (Icon == Heart) {
     iconClass += " text-red-500 fill-red-500"; 
   } else {
     iconClass += " text-pink-400";
-  }
+  } 
 
   return (
     <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-amber-50/80 backdrop-blur-none lg:backdrop-blur-lg rounded-3xl p-6 md:p-12 shadow-xl border border-white/40">
@@ -36,12 +37,22 @@ export function TeamMember({ name, role, description, image, icon: Icon, quote }
         <div className="md:col-span-2">
           <div className="prose prose-lg max-w-none">
             { description }
-            <div className="bg-white/80 backdrop-blur-none lg:backdrop-blur-lg rounded-xl p-4 border-l-4 border-[#81007f] shadow-md">
-              <p className="text-gray-700 leading-relaxed flex items-center">
-                { Icon && <Icon className={ iconClass } size={ 20 } /> }
-                <strong>{ quote }</strong>
-              </p>
-            </div>
+            
+            { (() => {
+              if (quoteBar != "") {
+                return (
+                  <div className="bg-white/80 backdrop-blur-none lg:backdrop-blur-lg rounded-xl p-4 border-l-4 border-[#81007f] shadow-md">
+                    <p className="text-gray-700 leading-relaxed flex items-center">
+                      { Icon && <Icon className={ iconClass } size={ 20 } /> }
+                      <strong>{ quote }</strong>
+                    </p>
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })()
+            }
           </div>
         </div>
       </div>
