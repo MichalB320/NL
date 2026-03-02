@@ -1,7 +1,18 @@
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram } from "lucide-react";
+import { BadgeEuro, CreditCard, MapPin, Phone, Mail, Clock, Facebook, Instagram } from "lucide-react";
 
 export function Contact() {
   const contactInfo = [
+    {
+      icon: BadgeEuro,
+      title: "Kontakt pre sponzorov",
+      details: ["mariola.janikova@nebudlahostajny.sk"],
+      link: "mailto:mariola.janikova@nebudlahostajny.sk"
+    },
+    {
+      icon: CreditCard,
+      title: "IBAN",
+      details: ["SK29 0200 0000 0050 5482 6759", "Ďakujeme za každý, aj malý príspevok."]
+    },
     {
       icon: MapPin,
       title: "Adresa",
@@ -53,7 +64,7 @@ export function Contact() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {contactInfo.map((info, index) => {
               const IconComponent = info.icon;
               const isClickable = !!info.link;

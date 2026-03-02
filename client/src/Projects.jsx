@@ -1,12 +1,13 @@
 import { Heart, HandHeart, Backpack, Bus, Gift, Mail } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback.jsx";
+import Matky from './assets/matky.jpg';
 
 export function Projects() {
   const projects = [
     {
       icon: HandHeart,
       title: "Pomoc ženám v núdzi",
-      image: "https://images.unsplash.com/photo-1758526387966-381b2a558748?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMGRvbWVzdGljJTIwdmlvbGVuY2UlMjBzdXBwb3J0JTIwaGVscHxlbnwxfHx8fDE3NzAyNzczODl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: Matky,
       description: "Mnohé ženy prežívajú domáce násilie alebo ostali samy s deťmi, bez zázemia a podpory. Často utekajú len s tým, čo majú na sebe, bez finančných prostriedkov či základných vecí pre deti.",
       help: "Pomôcť mi môžeš darovaním potravín, hygienických potrieb, oblečenia, hračiek, alebo finančným príspevkom, vďaka ktorému im vieme zabezpečiť akútnu pomoc a bezpečie."
     },
