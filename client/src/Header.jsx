@@ -32,7 +32,7 @@ export function Header() {
           <div className="flex items-center gap-2 md:gap-8">
             <button 
               onClick={() => setShowDonateInfo(!showDonateInfo)} 
-              className="inline-flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full shadow-lg transition-all transform hover:scale-105 animate-pulse-subtle mr-2 sm:mr-4 text-xs sm:text-sm border-2 border-white"
+              className="inline-flex items-center px-1 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full shadow-lg transition-all transform hover:scale-105 animate-pulse-subtle sm:mr-4 text-xs sm:text-sm border-2 border-white"
             >
               {showDonateInfo ? 'Zavrieť' : '2% z dane'}
             </button>
