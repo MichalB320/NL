@@ -43,21 +43,23 @@ export function Projects() {
 
   return (
     <section id="nase-projekty" className="py-20 bg-gradient-to-b from-white to-purple-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Naše projekty
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
-            Vaša pomoc môže mať mnoho podôb. Vyberte si tú, ktorá je vám najbližšia.
-          </p>
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] rounded-full">
-            <Heart className="text-white w-5 h-5 fill-white" />
-            <span className="font-semibold text-white">Podaj pomocnú ruku</span>
+      <div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              Naše projekty
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
+              Vaša pomoc môže mať mnoho podôb. Vyberte si tú, ktorá je vám najbližšia.
+            </p>
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] rounded-full">
+              <Heart className="text-white w-5 h-5 fill-white" />
+              <span className="font-semibold text-white">Podaj pomocnú ruku</span>
+            </div>
           </div>
         </div>
 
-        <div className="flex overflow-x-auto gap-4 pb-10 snap-x snap-mandatory px-3">
+        <div className="flex overflow-x-auto gap-4 pb-10 snap-x snap-mandatory px-10">
           {projects.map((project, index) => {
             const IconComponent = project.icon;
             return (
@@ -116,7 +118,6 @@ export function Projects() {
           })}
         </div>
 
-        
       </div>
     </section>
   );
