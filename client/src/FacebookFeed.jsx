@@ -40,7 +40,7 @@ export default function FacebookFeed({url}) {
             className="fb-page" 
             data-href="https://www.facebook.com/profile.php?id=61579157963686" 
             data-tabs="timeline" 
-            data-width="350" 
+            data-width="350"
             data-height="630" 
             data-small-header="false" 
             data-adapt-container-width="false" 

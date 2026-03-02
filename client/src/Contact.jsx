@@ -53,7 +53,7 @@ export function Contact() {
 
   return (
     <section id="kontakt" className="py-20 px-4 relative">
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl"></div>
+      
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 p-8 md:p-12 lg:p-16">
@@ -64,7 +64,7 @@ export function Contact() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {contactInfo.map((info, index) => {
               const IconComponent = info.icon;
               const isClickable = !!info.link;

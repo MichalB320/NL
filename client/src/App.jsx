@@ -5,7 +5,7 @@ import { Header } from './Header.jsx'
 import { Hero } from './Hero.jsx'
 import Footer from './Footer.jsx'
 import { About } from './About.jsx'
-import Products from './Products.jsx'
+//import Products from './Products.jsx'
 import FacebookFedd from './FacebookFeed.jsx'
 import { Contact } from './Contact.jsx'
 import { HelpButton } from './HelpButton'
@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-violet-50 to-indigo-100">
+    <div className="min-h-screen min-w-full bg-gradient-to-br from-purple-100 via-violet-50 to-indigo-100">
       <Header />
       <main>
         <Hero />
@@ -44,8 +44,6 @@ function App() {
       <Footer />
       <HelpButton />
       {!hasConsent && <CookieConsent onAccept={() => setHasConsent(true)} />}
-      {//<PrivacyModal />
-}
     </div>
   )
 }
