@@ -1,6 +1,9 @@
 import { Heart, HandHeart, Backpack, Bus, Gift, Mail } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback.jsx";
 import Matky from './assets/matky.jpg';
+import Aut_Karta from './assets/autobusova_karta.jpg';
+import Mik_balik from './assets/mikulassky_balicek.jpg';
+import Taska from './assets/taska.jpg';
 
 export function Projects() {
   const projects = [
@@ -14,21 +17,21 @@ export function Projects() {
     {
       icon: Backpack,
       title: "Batôžtek nádeje",
-      image: "https://images.unsplash.com/photo-1654112260750-62e27953e9fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2hvb2wlMjBiYWNrcGFjayUyMHN1cHBsaWVzJTIwY2hpbGRyZW58ZW58MXx8fHwxNzcwMjc3MzkwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: Taska, //"https://images.unsplash.com/photo-1654112260750-62e27953e9fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2hvb2wlMjBiYWNrcGFjayUyMHN1cHBsaWVzJTIwY2hpbGRyZW58ZW58MXx8fHwxNzcwMjc3MzkwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       description: "Pripravte školskú tašku alebo batôžtek s pomôckami pre dieťa, ktoré to potrebuje. Vhodné sú zošity, perá, pastelky, peračníky, pravítka či športové vrecúška.",
       help: "Ak chcete, pridajte aj krátky povzbudivý odkaz - poteší rovnako ako darované veci."
     },
     {
       icon: Bus,
       title: "Nabi kartu - daruj cestu",
-      image: "https://images.unsplash.com/photo-1758908176211-5bd0932f956a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwdWJsaWMlMjB0cmFuc3BvcnQlMjBjYXJkJTIwdHJhdmVsfGVufDF8fHx8MTc3MDI3NzM5MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: Aut_Karta, //"https://images.unsplash.com/photo-1758908176211-5bd0932f956a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwdWJsaWMlMjB0cmFuc3BvcnQlMjBjYXJkJTIwdHJhdmVsfGVufDF8fHx8MTc3MDI3NzM5MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       description: "Mnohé deti zo sociálne slabších rodín sa nedostanú do školy alebo na krúžky, pretože si nemôžu dovoliť cestu autobusom. Deti však nemôžu za situáciu svojich rodičov.",
       help: "Aj malý príspevok znamená, že dieťa sa dostane tam, kam potrebuje."
     },
     {
       icon: Gift,
       title: "Mikulášsky balíček",
-      image: "https://images.unsplash.com/photo-1640672927297-c559cfc7b5a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHJpc3RtYXMlMjBnaWZ0cyUyMGNoaWxkcmVuJTIwcGFja2FnZXN8ZW58MXx8fHwxNzcwMjc3MzkwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: Mik_balik,//"https://images.unsplash.com/photo-1640672927297-c559cfc7b5a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHJpc3RtYXMlMjBnaWZ0cyUyMGNoaWxkcmVuJTIwcGFja2FnZXN8ZW58MXx8fHwxNzcwMjc3MzkwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       description: "Spravte radosť dieťaťu na Mikuláša! Môžete pripraviť vlastný balíček so sladkosťami a drobnosťami.",
       help: "Alebo nám prispieť finančne - balíček radi pripravíme za vás."
     },
