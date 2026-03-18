@@ -32,6 +32,7 @@ export default function Footer() {
               {[
                 { id: "o-nas", label: "O nás" },
                 { id: "nase-projekty", label: "Naše projekty" },
+                //{ id: "pomohli-sme", label: "Pomohli sme"},
                 { id: "aktuality", label: "Aktuality" },
                 { id: "kontakt", label: "Kontakt" },
               ].map((link) => (

@@ -32,13 +32,13 @@ export function Header() {
           <div className="flex items-center gap-2 md:gap-8">
             <button 
               onClick={() => setShowDonateInfo(!showDonateInfo)} 
-              className="inline-flex items-center px-1 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full shadow-lg transition-all transform hover:scale-105 animate-pulse-subtle sm:mr-4 text-xs sm:text-sm border-2 border-white"
+              className="inline-flex items-center px-1 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full shadow-lg transition-all transform hover:scale-105 animate-pulse-subtle sm:mr-4 text-xs sm:text-sm border-1"
             >
               {showDonateInfo ? 'Zavrieť' : '2% z dane'}
             </button>
           
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
+            <nav className="hidden lg:flex space-x-8">
               <button
                 onClick={() => scrollToSection("domov")}
                 className="text-gray-700 hover:text-violet-500 transition-colors"
@@ -57,9 +57,20 @@ export function Header() {
               >
                 Naše projekty
               </button>
-           
+              {/*<button
+                onClick={() => scrollToSection("pomohli-sme")}
+                className="text-gray-700 hover:text-violet-500 transition-colors"
+              >
+                Pomohli sme
+              </button>*/}
+              {/*<button
+                onClick={() => scrollToSection("videli-ste-nas")}
+                className="text-gray-700 hover:text-violet-500 transition-colors"
+              >
+                Videli ste nás
+              </button>*/}
               <button
-                onClick={() => scrollToSection("aktuality")}
+                onClick={() => scrollToSection("aktuality")}  
                 className="text-gray-700 hover:text-violet-500 transition-colors"
               >
                 Aktuality
@@ -73,10 +84,7 @@ export function Header() {
             </nav>
 
             {/* Mobile menu button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-gray-700 hover:text-violet-500"
-            >
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2 text-gray-700 hover:text-violet-500">
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -84,7 +92,7 @@ export function Header() {
         
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t">
+          <nav className="lg:hidden py-4 border-t">
             <div className="flex flex-col space-y-4">
               <button
                 onClick={() => scrollToSection("domov")}
@@ -104,6 +112,18 @@ export function Header() {
               >
                 Naše projekty
               </button>
+              {/*<button 
+                onClick={() => scrollToSection("pomohli-sme")}
+                className="text-gray-700 hover:text-violet-500 text-left"
+              >
+                Pomohli sme
+              </button>*/}
+              {/*<button
+                onClick={() => scrollToSection("videli-ste-nas")}
+                className="text-gray-700 hover:text-violet-500 text-left"
+              >
+                Videli ste nás
+              </button>*/}
               <button
                 onClick={() => scrollToSection("aktuality")}
                 className="text-gray-700 hover:text-violet-500 text-left"

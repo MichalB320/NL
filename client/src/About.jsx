@@ -74,14 +74,14 @@ export function About() {
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Glass card container */}
-        <div className="bg-white/70  rounded-3xl shadow-2xl border border-white/30 p-5 md:p-12 lg:p-16">
+        <div className="bg-white/50  rounded-3xl shadow-2xl border border-white/30 p-5 md:p-12 lg:p-16">
           
 
           {/* Team Section */}
           <div className="space-y-8">
-            <h3 className="text-3xl font-bold text-gray-800 text-center mb-1">
+            <h1 className="text-3xl font-bold text-gray-800 text-center mb-3">
               Náš tím
-            </h3>
+            </h1>
 
             { teamData.map((member) => (
               <TeamMember 

@@ -11,6 +11,12 @@ import { Contact } from './Contact.jsx'
 import { HelpButton } from './HelpButton'
 import { Projects } from './Projects.jsx'
 import { CookieConsent } from './CookieConsent.jsx'
+import { HelpedSection } from './Helped.jsx'
+import { MapSection} from './Map.jsx';
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import varime from './assets/varime-logo-slogan.png';
+import jozef from './assets/logo_jozef.png';
+import lificaffe from './assets/lificaffe-logo.png';
 
 function App() {
   const mojadresa = "https://www.facebook.com/profile.php?id=61579157963686";
@@ -22,6 +28,13 @@ function App() {
     }
   }, []);
 
+  const sponsors = [
+    {
+      id: 1,
+      image: varime
+    }
+  ];
+
   return (
     <div className="min-h-screen min-w-full bg-gradient-to-br from-purple-100 via-violet-50 to-indigo-100">
       <Header />
@@ -29,7 +42,8 @@ function App() {
         <Hero />
         <About />
         <Projects />
-        
+        {/*<HelpedSection />*/}
+        {/*<MapSection />}*/}
         {hasConsent ? (
           <FacebookFedd url={mojadresa}/>
         ) : (
@@ -41,6 +55,34 @@ function App() {
         )}
         <Contact />
       </main>
+      {/* Sekcia PARNERI */}
+      <div className="mt-4 pb-15">
+        <p className="text-center text-xl font-semibold uppercase tracking-widest text-gray-400 mb-8">
+          Naši partneri
+        </p>
+  
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 transition-all duration-500">
+
+          <div className="h-20 md:h-28 w-40 md:w-52 flex items-center justify-center grayscale hover:grayscale-0">
+            <a href="https://www.varime.blog/" target="_blank" rel="noopener noreferrer" className="h-full w-full, flex items-center justify-center hover:scale-110 hover:grayscale-0 transition-transform">
+              <ImageWithFallback src={varime} className="max-h-full max-w-full object-contain"/>
+            </a>
+          </div>
+    
+          <div className="h-20 md:h-28 w-40 md:w-52 flex items-center justify-center grayscale hover:grayscale-0">
+            <a href="https://lificaffe.cz/" target="_blank" rel="noopener noreferrer" className="h-full w-full flex items-center justify-center hover:scale-110 hover:grayscale-0 transition-transform">
+            <ImageWithFallback src={lificaffe} className="max-h-full max-w-full object-contain"/>
+            </a>
+          </div>
+    
+          <div className="h-20 md:h-28 w-40 md:w-52 flex items-center justify-center grayscale hover:grayscale-0">
+            <a href="https://jozefdruhy.sk/" target="_blank" rel="noopener noreferrer" className="h-full w-full flex items-center justify-center hover:scale-110 hover:grayscale-0 transition-transform">
+              <ImageWithFallback src={jozef} className="max-h-full max-w-full object-contain"/> 
+            </a>
+          </div>
+
+        </div>
+      </div>
       <Footer />
       <HelpButton />
       {!hasConsent && <CookieConsent onAccept={() => setHasConsent(true)} />}

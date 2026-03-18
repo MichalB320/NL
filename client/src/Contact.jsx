@@ -56,7 +56,7 @@ export function Contact() {
       
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 p-8 md:p-12 lg:p-16">
+        <div className="bg-white/70 rounded-3xl shadow-2xl border border-white/30 p-8 md:p-12 lg:p-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Ozvite sa nám</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
