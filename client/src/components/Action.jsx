@@ -1,5 +1,6 @@
 import { Calendar, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom"; 
 import { ImageWithFallback } from "../figma/ImageWithFallback.jsx";
 
 export function Action({ action }) {
@@ -7,15 +8,9 @@ export function Action({ action }) {
   const [activeImageIndex, setActiveImageIndex] = useState(null);
 
   function toggleDescription() {
-    if (isExpanded === true) {
-        setIsExpanded(false);
-    } else {
-        setIsExpanded(true);
-    }
-    }
+    setIsExpanded(!isExpanded);
+  }
 
-
-  // Funkcie pre Lightbox
   const openLightbox = (index) => setActiveImageIndex(index);
   const closeLightbox = () => setActiveImageIndex(null);
 
@@ -29,11 +24,21 @@ export function Action({ action }) {
     setActiveImageIndex((prev) => (prev - 1 + action.images.length) % action.images.length);
   };
 
+  useEffect(() => {
+    if (activeImageIndex !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => { document.body.style.overflow = "unset"; };
+  }, [activeImageIndex]);
+
   return (
-    <div className="bg-gradient-to-br from-white/90 to-purple-50/80 backdrop-blur-lg rounded-3xl overflow-hidden shadow-lg border border-violet/50">
-      <div className="p-8 md:p-10">
+    <div className="bg-white/70 rounded-3xl overflow-hidden shadow-lg border border-violet/50">
+      <div className="p-8 md:p-10 flex flex-col lg:flex-row lg:gap-15 items-center lg:items-start">
+        <div className="flex-1 w-full">
         {/* Hlavička akcie */}
-        <div className="flex flex-col items-start md:flex-row md:items-center md:justify-between mb-6">
+        <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between mb-6">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3 md:mb-0">
             {action.title}
           </h2>
@@ -45,77 +50,76 @@ export function Action({ action }) {
 
         {/* Popis akcie s funkciou Zobraziť viac */}
         <div className="mb-8">
-          <p className={`text-gray-700 text-sm leading-relaxed ${!isExpanded ? "line-clamp-4" : ""}`}>
+          <p className={`text-gray-700 text-sm leading-relaxed ${!isExpanded ? "line-clamp-4 lg:line-clamp-none" : "lg:line-clamp-none"}`}>
             {action.description}
           </p>
-          <button
-            onClick={toggleDescription}
-            className="mt-2 text-[#81007f] font-bold text-sm hover:underline transition-all"
-          >
+          <button onClick={toggleDescription} className="lg:hidden mt-2 text-[#81007f] font-bold text-sm hover:underline">
             {isExpanded ? "Zobraziť menej" : "zobraziť viac"}
           </button>
         </div>
+        </div>
 
-        {/* Galéria obrázkov */}
-    
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {action.images.map((image, index) => (
-            <div
-              key={index}
-              onClick={() => openLightbox(index)}
-              className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
-            >
-              <ImageWithFallback
-                src={image}
-                alt={`${action.title} - fotka ${index + 1}`}
-                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-            </div>
-          ))}
+        {/* Galéria ako balíček fotiek */}
+        <div className="flex-shrink-0 flex justify-center py-10 md:py-5 md:pr-12"> 
+          <div onClick={() => openLightbox(0)} className="relative w-44 h-44 md:w-80 md:h-[400px] cursor-pointer group">
+            {action.images.slice(0, 3).map((image, index) => (
+              <div key={index} className="absolute inset-0 transition-all duration-500 ease-out shadow-xl rounded-2xl overflow-hidden border-1 border-violet/50" style={{
+                // Posun a rotácia pre efekt naskladaných kariet
+                transform: `translateX(${index * 15}px) translateY(${index * -10}px) rotate(${index * 3}deg)`,
+                // Nižšie indexy sú pod vrchnou fotkou
+                zIndex: 30 - index,
+                // Jemné stmavenie spodných fotiek pre hĺbku
+                filter: index > 0 ? `brightness(${100 - index * 15}%)` : "none",
+              }}>
+        
+                <ImageWithFallback src={image} className="w-full h-full object-cover transition-transform duration-700" alt={`Náhľad ${index + 1}`}/>
+        
+                {/* Na poslednej (spodnej) viditeľnej fotke ukážeme počet zvyšných fotiek */}
+                {index === 2 && action.images.length > 3 && (
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-bold text-xl">
+                    + {action.images.length - 2}
+                  </div>
+               )}
+              </div>
+            ))}
+
+          </div>
         </div>
       </div>
 
-        {/* --- LIGHTBOX (Modálne okno) --- */}
-      {activeImageIndex !== null && (
+      {/* --- LIGHTBOX CEZ PORTÁL --- */}
+      {activeImageIndex !== null && createPortal(
         <div 
-          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-300"
+          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-300"
           onClick={closeLightbox}
         >
           {/* Tlačidlo zavrieť */}
-          <button className="absolute top-6 right-6 text-white hover:text-purple-400 transition-colors z-[110]">
+          <button className="absolute top-6 right-6 text-white hover:text-purple-400 transition-colors z-[10000]">
             <X size={40} />
           </button>
 
-          {/* Šípka vľavo */}
-          <button 
-            onClick={prevImage}
-            className="absolute left-4 p-2 text-white hover:bg-white/10 rounded-full transition-all"
-          >
-            <ChevronLeft size={48} />
+          {/* Šípky */}
+          <button onClick={prevImage} className="absolute left-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
+            <ChevronLeft size={60} />
           </button>
 
-          {/* Aktuálny obrázok v Lightboxe */}
-          <div className="max-w-5xl max-h-[85vh] relative" onClick={(e) => e.stopPropagation()}>
+          <div className="max-w-7xl max-h-[90vh] relative flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
             <img 
               src={action.images[activeImageIndex]} 
-              className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+              className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300"
               alt="Detail"
             />
-            <div className="absolute -bottom-10 left-0 right-0 text-center text-white font-medium">
-              Fotka {activeImageIndex + 1} z {action.images.length}
+            <div className="mt-4 text-white font-medium tracking-widest uppercase text-sm">
+              Fotka {activeImageIndex + 1} / {action.images.length}
             </div>
           </div>
 
-          {/* Šípka vpravo */}
-          <button 
-            onClick={nextImage}
-            className="absolute right-4 p-2 text-white hover:bg-white/10 rounded-full transition-all"
-          >
-            <ChevronRight size={48} />
+          <button onClick={nextImage} className="absolute right-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
+            <ChevronRight size={60} />
           </button>
-        </div>
+        </div>,
+        document.body // Vykreslí sa na koniec <body>
       )}
-
     </div>
   );
 }

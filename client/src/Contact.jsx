@@ -30,13 +30,13 @@ export function Contact() {
       title: "E-mail",
       details: ["info@nebudlahostajny.sk", "mariola.janikova@nebudlahostajny.sk"],
       link: "mailto:info@nebudlahostajny.sk"
-    },
+    },/*
     {
       icon: Clock,
       title: "Úradné hodiny",
       details: ["Nepretržite"],
       link: null
-    },
+    },*/
     {
       icon: Facebook,
       title: "Facebook",
@@ -56,7 +56,7 @@ export function Contact() {
       
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="bg-white/70 rounded-3xl shadow-2xl border border-white/30 p-8 md:p-12 lg:p-16">
+        <div className="bg-white/70 rounded-3xl shadow-xl border border-white/30 p-8 md:p-12 lg:p-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Ozvite sa nám</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -70,7 +70,7 @@ export function Contact() {
               const isClickable = !!info.link;
               
               // Spoločné štýly pre kartu
-              const cardClass = `bg-white rounded-2xl p-6 shadow-md transition-all duration-300 flex flex-col items-center text-center border border-transparent ${
+              const cardClass = `bg-white rounded-2xl p-6 shadow-sm transition-all duration-300 flex flex-col items-center text-center border border-violet/20 ${
                 isClickable ? "hover:shadow-xl hover:border-purple-200 cursor-pointer group" : ""
               }`;
 
@@ -78,7 +78,7 @@ export function Contact() {
               const cardContent = (
                 <>
                   <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-xl mb-4 group-hover:scale-110 transition-transform">
-                    <IconComponent className="text-purple-600" size={24} />
+                    <IconComponent className="text-[#81007f]" size={24} />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-3">{info.title}</h3>
                   <div className="space-y-1">

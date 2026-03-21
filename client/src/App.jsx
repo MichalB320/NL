@@ -42,7 +42,7 @@ function App() {
         <Hero />
         <About />
         <Projects />
-        {/*<HelpedSection />*/}
+        <HelpedSection />
         {/*<MapSection />}*/}
         {hasConsent ? (
           <FacebookFedd url={mojadresa}/>

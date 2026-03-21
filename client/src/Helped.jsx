@@ -2,6 +2,9 @@ import { Action } from "./components/Action.jsx";
 import MariolaMikulas from "./assets/mariola_mikulas.jpeg";
 import Deti from "./assets/deti.jpg";
 import DetiMikulas from "./assets/deti_mikulas.jpeg";
+import JankoBalicek from "./assets/IMG_4668.jpeg";
+import Balik from "./assets/IMG_4648.jpeg";
+import Clenky from "./assets/IMG_0816.jpeg";
 
 export function HelpedSection() {
   const actions = [
@@ -13,7 +16,10 @@ export function HelpedSection() {
       images: [
         MariolaMikulas,
         Deti,
-        DetiMikulas
+        JankoBalicek,
+        Balik,
+        DetiMikulas,
+        Clenky
       ]
     },
   ];
