@@ -1,4 +1,4 @@
-import { Calendar, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom"; 
 import { ImageWithFallback } from "../figma/ImageWithFallback.jsx";
@@ -6,21 +6,31 @@ import { ImageWithFallback } from "../figma/ImageWithFallback.jsx";
 export function Action({ action }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(null);
+  const [isImageLoading, setIsImageLoading] = useState(false);
 
   function toggleDescription() {
     setIsExpanded(!isExpanded);
   }
 
-  const openLightbox = (index) => setActiveImageIndex(index);
-  const closeLightbox = () => setActiveImageIndex(null);
+  const openLightbox = (index) => {
+    setIsImageLoading(true); // Pri otvorení začneme načítavať
+    setActiveImageIndex(index);
+  };
+
+  const closeLightbox = () => {
+    setActiveImageIndex(null);
+    setIsImageLoading(false);
+  };
 
   const nextImage = (e) => {
     e.stopPropagation();
+    setIsImageLoading(true);
     setActiveImageIndex((prev) => (prev + 1) % action.images.length);
   };
 
   const prevImage = (e) => {
     e.stopPropagation();
+    setIsImageLoading(true);
     setActiveImageIndex((prev) => (prev - 1 + action.images.length) % action.images.length);
   };
 
@@ -62,10 +72,10 @@ export function Action({ action }) {
         {/* Galéria ako balíček fotiek */}
         <div className="flex-shrink-0 flex justify-center pt-10 md:py-10 pr-10 md:pr-12"> 
           <div onClick={() => openLightbox(0)} className="relative w-44 h-44 md:w-80 md:h-[400px] cursor-pointer group">
-            {action.images.slice(0, action.images.length).map((image, index) => (
+            {action.images.slice(0, action.images.length/2).map((image, index) => (
               <div key={index} className="absolute inset-0 transition-all duration-500 ease-out shadow-xl rounded-2xl overflow-hidden border-1 border-violet/50" style={{
                 // Posun a rotácia pre efekt naskladaných kariet
-                transform: `translateX(${index * 8}px) translateY(${index * -6}px) rotate(${index * 1}deg)`,
+                transform: `translateX(${index * 10}px) translateY(${index * -8}px) rotate(${index * 2}deg)`,
                 // Nižšie indexy sú pod vrchnou fotkou
                 zIndex: 30 - index,
                 // Jemné stmavenie spodných fotiek pre hĺbku
@@ -104,14 +114,25 @@ export function Action({ action }) {
           </button>
 
           <div className="max-w-7xl max-h-[90vh] relative flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+
+            {isImageLoading && (
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <Loader2 className="w-12 h-12 text-purple-500 animate-spin" />
+              </div>
+            )}
             <img 
+              key={activeImageIndex}
               src={action.images[activeImageIndex]} 
               className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300"
+              onLoad={() => setIsImageLoading(false)}
               alt="Detail"
             />
-            <div className="mt-4 text-white font-medium tracking-widest uppercase text-sm">
-              Fotka {activeImageIndex + 1} / {action.images.length}
-            </div>
+            {!isImageLoading && (
+              <div className="mt-4 text-white font-medium tracking-widest uppercase text-xs">
+                Fotka {activeImageIndex + 1} / {action.images.length}
+              </div>
+            )}
+            
           </div>
 
           <button onClick={nextImage} className="absolute right-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
