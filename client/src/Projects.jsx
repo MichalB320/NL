@@ -82,7 +82,7 @@ export function Projects() {
                   <div className="flex items-start gap-4 mb-4">
                     <div>
                       <div className="flex flex items-center gap-4 mb-3">
-                        <div className="flex-shrink-0 w-9 h-9 bg-purple-50 rounded-xl flex items-center justify-center">
+                        <div className="flex-shrink-0 w-9 h-9 bg-purple-100 rounded-xl flex items-center justify-center">
                           <IconComponent className="text-[#81007f]" size={19} />
                         </div>
                         <h3 className="text-xl font-bold text-gray-800">

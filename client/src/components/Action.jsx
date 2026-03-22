@@ -60,12 +60,12 @@ export function Action({ action }) {
         </div>
 
         {/* Galéria ako balíček fotiek */}
-        <div className="flex-shrink-0 flex justify-center py-10 md:py-5 md:pr-12"> 
+        <div className="flex-shrink-0 flex justify-center pt-10 md:py-10 pr-10 md:pr-12"> 
           <div onClick={() => openLightbox(0)} className="relative w-44 h-44 md:w-80 md:h-[400px] cursor-pointer group">
-            {action.images.slice(0, 3).map((image, index) => (
+            {action.images.slice(0, action.images.length).map((image, index) => (
               <div key={index} className="absolute inset-0 transition-all duration-500 ease-out shadow-xl rounded-2xl overflow-hidden border-1 border-violet/50" style={{
                 // Posun a rotácia pre efekt naskladaných kariet
-                transform: `translateX(${index * 15}px) translateY(${index * -10}px) rotate(${index * 3}deg)`,
+                transform: `translateX(${index * 8}px) translateY(${index * -6}px) rotate(${index * 1}deg)`,
                 // Nižšie indexy sú pod vrchnou fotkou
                 zIndex: 30 - index,
                 // Jemné stmavenie spodných fotiek pre hĺbku

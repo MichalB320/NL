@@ -77,7 +77,7 @@ export function Contact() {
               // Obsah karty
               const cardContent = (
                 <>
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-xl mb-4 group-hover:scale-110 transition-transform">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 rounded-xl mb-4 group-hover:scale-110 transition-transform">
                     <IconComponent className="text-[#81007f]" size={24} />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-3">{info.title}</h3>
