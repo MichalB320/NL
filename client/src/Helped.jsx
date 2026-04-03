@@ -1,10 +1,10 @@
 import { Action } from "./components/Action.jsx";
-import MariolaMikulas from "./assets/mariola_mikulas.jpeg";
-import Deti from "./assets/deti.jpg";
-import DetiMikulas from "./assets/deti_mikulas.jpeg";
-import JankoBalicek from "./assets/IMG_4668.jpeg";
-import Balik from "./assets/IMG_4648.jpeg";
-import Clenky from "./assets/IMG_0816.jpeg";
+import MariolaMikulas from "./assets/pomohli-sme/mariola_mikulas.jpeg";
+import Deti from "./assets/pomohli-sme/deti.jpg";
+import DetiMikulas from "./assets/pomohli-sme/deti_mikulas.jpeg";
+import JankoBalicek from "./assets/pomohli-sme/IMG_4668.jpeg";
+import Balik from "./assets/pomohli-sme/IMG_4648.jpeg";
+import Clenky from "./assets/pomohli-sme/IMG_0816.jpeg";
 
 export function HelpedSection() {
   const actions = [

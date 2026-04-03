@@ -1,4 +1,4 @@
-import { BadgeEuro, CreditCard, MapPin, Phone, Mail, Clock, Facebook, Instagram } from "lucide-react";
+import { BadgeEuro, CreditCard, MapPin, Phone, Mail, Facebook, Instagram } from "lucide-react";
 
 export function Contact() {
   const contactInfo = [

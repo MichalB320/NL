@@ -1,9 +1,9 @@
 import { Heart, HandHeart, Backpack, Bus, Gift, Mail } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback.jsx";
-import Matky from './assets/matky.jpg';
-import Aut_Karta from './assets/autobusova_karta.jpg';
-import Mik_balik from './assets/mikulassky_balicek.jpg';
-import Taska from './assets/taska.jpg';
+import Matky from './assets/nase-projekty/matky.jpg';
+import Aut_Karta from './assets/nase-projekty/autobusova_karta.jpg';
+import Mik_balik from './assets/nase-projekty/mikulassky_balicek.jpg';
+import Taska from './assets/nase-projekty/taska.jpg';
 
 export function Projects() {
   const projects = [
@@ -71,11 +71,7 @@ export function Projects() {
                 className="min-w-[80vw] md:min-w-[400px] snap-center bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <div className="h-44">
-                  <ImageWithFallback
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
+                  <ImageWithFallback src={project.image} alt={project.title} className="w-full h-full object-cover" />
                 </div>
 
                 <div className="p-6 md:p-8">

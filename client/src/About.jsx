@@ -1,8 +1,8 @@
 import { Heart, Sparkles } from "lucide-react";
-import Mariola from './assets/mariola.jpg';
-import Lenka from './assets/lenka.jpg';
-import Lesana from './assets/lesana.jpg';
-import Dominika from './assets/dominika.jpg';
+import Mariola from './assets/o-nas/mariola.jpg';
+import Lenka from './assets/o-nas/lenka.jpg';
+import Lesana from './assets/o-nas/lesana.jpg';
+import Dominika from './assets/o-nas/dominika.jpg';
 import { TeamMember } from './components/TeamMember.jsx';
 
 export function About() {

@@ -14,9 +14,9 @@ import { CookieConsent } from './CookieConsent.jsx'
 import { HelpedSection } from './Helped.jsx'
 import { MapSection} from './Map.jsx';
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import varime from './assets/varime-logo-slogan.png';
-import jozef from './assets/logo_jozef.png';
-import lificaffe from './assets/lificaffe-logo.png';
+import varime from './assets/partneri/varime-logo-slogan.png';
+import jozef from './assets/partneri/logo_jozef.png';
+import lificaffe from './assets/partneri/lificaffe-logo.png';
 
 function App() {
   const mojadresa = "https://www.facebook.com/profile.php?id=61579157963686";
@@ -43,7 +43,7 @@ function App() {
         <About />
         <Projects />
         <HelpedSection />
-        {/*<MapSection />}*/}
+        <MapSection />
         {hasConsent ? (
           <FacebookFedd url={mojadresa}/>
         ) : (

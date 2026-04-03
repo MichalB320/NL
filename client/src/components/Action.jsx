@@ -2,6 +2,7 @@ import { Calendar, X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom"; 
 import { ImageWithFallback } from "../figma/ImageWithFallback.jsx";
+import GalleryStack from "./GalleryStack.jsx";
 
 export function Action({ action }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -69,8 +70,9 @@ export function Action({ action }) {
         </div>
         </div>
 
+      {/*<GalleryStack images={action.images} onOpenLightbox={(index) => openLightbox(index)} />*/}
         {/* Galéria ako balíček fotiek */}
-        <div className="flex-shrink-0 flex justify-center pt-10 md:py-10 pr-10 md:pr-12"> 
+        <div className="flex-shrink-0 flex justify-center pt-10 md:py-10 pr-5 md:pr-12"> 
           <div onClick={() => openLightbox(0)} className="relative w-44 h-44 md:w-80 md:h-[400px] cursor-pointer group">
             {action.images.slice(0, action.images.length/2).map((image, index) => (
               <div key={index} className="absolute inset-0 transition-all duration-500 ease-out shadow-xl rounded-2xl overflow-hidden border-1 border-violet/50" style={{

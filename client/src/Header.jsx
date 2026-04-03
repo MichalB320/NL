@@ -63,12 +63,12 @@ export function Header() {
               >
                 Pomohli sme
               </button>
-              {/*<button
+              <button
                 onClick={() => scrollToSection("videli-ste-nas")}
                 className="text-gray-700 hover:text-violet-500 transition-colors"
               >
                 Videli ste nás
-              </button>*/}
+              </button>
               <button
                 onClick={() => scrollToSection("aktuality")}  
                 className="text-gray-700 hover:text-violet-500 transition-colors"
@@ -118,12 +118,12 @@ export function Header() {
               >
                 Pomohli sme
               </button>
-              {/*<button
+              <button
                 onClick={() => scrollToSection("videli-ste-nas")}
                 className="text-gray-700 hover:text-violet-500 text-left"
               >
                 Videli ste nás
-              </button>*/}
+              </button>
               <button
                 onClick={() => scrollToSection("aktuality")}
                 className="text-gray-700 hover:text-violet-500 text-left"
