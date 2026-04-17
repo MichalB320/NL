@@ -21,6 +21,7 @@ export function TeamMember({ name, role, description, image, icon: Icon, quote }
             <div className="relative rounded-2xl overflow-hidden shadow-xl ring-4 ring-white/50">
               <ImageWithFallback
                 src={ image }
+                loading="lazy"
                 alt={ name }
                 className="w-full h-auto"
               />

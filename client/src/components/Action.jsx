@@ -74,7 +74,7 @@ export function Action({ action }) {
         {/* Galéria ako balíček fotiek */}
         <div className="flex-shrink-0 flex justify-center pt-10 md:py-10 pr-5 md:pr-12"> 
           <div onClick={() => openLightbox(0)} className="relative w-44 h-44 md:w-80 md:h-[400px] cursor-pointer group">
-            {action.images.slice(0, action.images.length/2).map((image, index) => (
+            {action.images.slice(0, 3).map((image, index) => (
               <div key={index} className="absolute inset-0 transition-all duration-500 ease-out shadow-xl rounded-2xl overflow-hidden border-1 border-violet/50" style={{
                 // Posun a rotácia pre efekt naskladaných kariet
                 transform: `translateX(${index * 10}px) translateY(${index * -8}px) rotate(${index * 2}deg)`,
@@ -87,9 +87,9 @@ export function Action({ action }) {
                 <ImageWithFallback src={image} className="w-full h-full object-cover transition-transform duration-700" alt={`Náhľad ${index + 1}`}/>
         
                 {/* Na poslednej (spodnej) viditeľnej fotke ukážeme počet zvyšných fotiek */}
-                {index === 2 && action.images.length > 3 && (
+                {index === Math.min(action.images.length - 1, 2) && action.images.length > 3 && (
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-bold text-xl">
-                    + {action.images.length - 2}
+                    + {action.images.length - 3}
                   </div>
                )}
               </div>
@@ -111,9 +111,11 @@ export function Action({ action }) {
           </button>
 
           {/* Šípky */}
-          <button onClick={prevImage} className="absolute left-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
-            <ChevronLeft size={60} />
-          </button>
+          {action.images.length > 1 && (
+            <button onClick={prevImage} className="absolute left-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
+              <ChevronLeft size={60} />
+            </button>
+          )}
 
           <div className="max-w-7xl max-h-[90vh] relative flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
 
@@ -136,10 +138,11 @@ export function Action({ action }) {
             )}
             
           </div>
-
-          <button onClick={nextImage} className="absolute right-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
-            <ChevronRight size={60} />
-          </button>
+          {action.images.length > 1 && (
+            <button onClick={nextImage} className="absolute right-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
+              <ChevronRight size={60} />
+            </button>
+          )}
         </div>,
         document.body // Vykreslí sa na koniec <body>
       )}

@@ -9,6 +9,7 @@ import trhy1 from "./assets/videli-ste-nas/trhy/trhy1.jpeg";
 import trhy2 from "./assets/videli-ste-nas/trhy/trhy2.jpeg";
 import trhy3 from "./assets/videli-ste-nas/trhy/trhy3.jpeg";
 import trhy4 from "./assets/videli-ste-nas/trhy/trhy4.jpg";
+import { Action } from "./components/Action.jsx";
 
 const customIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png", 
@@ -68,7 +69,7 @@ export function MapSection() {
       descritption: "Vianočné trhy 2025",
       coords: [48.84612012770536, 17.22889819851306],
       images: [trhy1, trhy2, trhy3, trhy4],
-      event: "Naša prvá „veľká“ akcia v rámci občianskeho združenia Nebuď ľahostajný sa konala počas adventného obdobia, keď sme mali možnosť byť súčasťou vianočných trhov v Skalici. Vďaka podpore organizátora sme mali na trhoch vlastný stánok, v ktorom sme rozdávali dobrú náladu, úsmevy a radi sme sa podelili s návštevníkmi o množstvo sladkých dobrôt. Na vianočných trhoch sme spojili sily aj so Sandrou z Varimeblog, ktorá nám napiekla množstvo výborných domácich maškŕt. Aj vďaka nej mal náš stánok krásnu atmosféru a návštevníci si mohli pochutnať na niečom naozaj výnimočnom. Výťažok zo zbierky sme následne použili na nákup vianočných darčekov pre deti a na pomoc rodinám v rámci okresu Skalica. Pomoc mala rôzne podoby – od potravinovej pomoci až po hygienické potreby pre rodiny, ktoré to najviac potrebujú. Zo srdca ďakujeme všetkým, ktorí sa pri našom stánku zastavili, podporili nás a stali sa súčasťou tejto krásnej myšlienky. Aj vďaka vám môžeme pomáhať tam, kde je to najviac potrebné.Nebuďme ľahostajní, podajme pomocnú ruku. ♥"
+      event: "Naša prvá „veľká“ akcia v rámci občianskeho združenia Nebuď ľahostajný sa konala počas adventného obdobia, keď sme mali možnosť byť súčasťou vianočných trhov v Skalici. Vďaka podpore organizátora sme mali na trhoch vlastný stánok, v ktorom sme rozdávali dobrú náladu, úsmevy a radi sme sa podelili s návštevníkmi o množstvo sladkých dobrôt. Na vianočných trhoch sme spojili sily aj so Sandrou z Varimeblog, ktorá nám napiekla množstvo výborných domácich maškŕt. Aj vďaka nej mal náš stánok krásnu atmosféru a návštevníci si mohli pochutnať na niečom naozaj výnimočnom. Tiež s naším sponzorom LiFicaffe okienko s perfektnou kávičkou, ktorá voňala široko ďaleko. :) Výťažok zo zbierky sme následne použili na nákup vianočných darčekov pre deti a na pomoc rodinám v rámci okresu Skalica. Pomoc mala rôzne podoby – od potravinovej pomoci až po hygienické potreby pre rodiny, ktoré to najviac potrebujú. Zo srdca ďakujeme všetkým, ktorí sa pri našom stánku zastavili, podporili nás a stali sa súčasťou tejto krásnej myšlienky. Aj vďaka vám môžeme pomáhať tam, kde je to najviac potrebné. Zároveň ďakujeme organizatorovi pánovi Hrehorovi, vďaka ktorému sme sa mohli stánkov zúčastniť. Nebuďme ľahostajní ❤️"
     },
   ];
 
@@ -163,10 +164,11 @@ export function MapSection() {
           <button className="absolute top-6 right-6 text-white hover:text-purple-400 transition-colors z-[10000]">
             <X size={40} />
           </button>
-
-          <button onClick={prevImage} className="absolute left-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
-            <ChevronLeft size={60} />
-          </button>
+          {activeLocation.images.length > 1 && (
+            <button onClick={prevImage} className="absolute left-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
+              <ChevronLeft size={60} />
+            </button>
+          )}
 
           <div className="max-w-7xl max-h-[90vh] relative flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
 
@@ -187,10 +189,12 @@ export function MapSection() {
             )}
             
           </div>
-
-          <button onClick={nextImage} className="absolute right-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
-            <ChevronRight size={60} />
-          </button>
+          
+          {activeLocation.images.length > 1 && (
+            <button onClick={nextImage} className="absolute right-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
+              <ChevronRight size={60} />
+            </button>
+          )}
         </div>, document.body
       )}
       

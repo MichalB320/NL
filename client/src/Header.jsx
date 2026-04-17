@@ -1,6 +1,7 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import Logo from './assets/logo.png';
+import Logo2 from './assets/logo2.png';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,19 +21,17 @@ export function Header() {
     <header className="sticky top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0">
-            <div className="flex items-center gap-3">
-              <img src={Logo} alt="Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
-              <h1 className="text-xl font-bold bg-gradient-to-r from-[#81007f] to-[#b026ae] bg-clip-text text-transparent">
-                Nebuď Ľahostajný
-              </h1> 
-            </div>
-          </div>
+          <button onClick={() => scrollToSection("domov")} className="flex-shrink-0 flex items-center gap-3 hover:opacity-70 transition-opacity focus:outline-none cursor-pointer">
+            <img src={Logo2} alt="Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
+            <h1 className="text-xl font-bold bg-gradient-to-r from-[#81007f] to-[#b026ae] bg-clip-text text-transparent">
+              Nebuď Ľahostajný
+            </h1> 
+          </button>
 
           <div className="flex items-center gap-2 md:gap-8">
             <button 
               onClick={() => setShowDonateInfo(!showDonateInfo)} 
-              className="inline-flex items-center px-1 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full shadow-lg transition-all transform hover:scale-105 animate-pulse-subtle sm:mr-4 text-xs sm:text-sm border-1"
+              className="inline-flex items-center px-1 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full shadow-lg transition-all transform hover:scale-105 animate-pulse-subtle sm:mr-4 text-xs sm:text-sm border-1 cursor-pointer"
             >
               {showDonateInfo ? 'Zavrieť' : '2% z dane'}
             </button>
@@ -41,43 +40,43 @@ export function Header() {
             <nav className="hidden lg:flex space-x-8">
               <button
                 onClick={() => scrollToSection("domov")}
-                className="text-gray-700 hover:text-violet-500 transition-colors"
+                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
               >
                 Domov
               </button>
               <button
                 onClick={() => scrollToSection("o-nas")}
-                className="text-gray-700 hover:text-violet-500 transition-colors"
+                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
               >
                 O nás
               </button>
               <button
                 onClick={() => scrollToSection("nase-projekty")}
-                className="text-gray-700 hover:text-violet-500 transition-colors"
+                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
               >
                 Naše projekty
               </button>
               <button
                 onClick={() => scrollToSection("pomohli-sme")}
-                className="text-gray-700 hover:text-violet-500 transition-colors"
+                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
               >
                 Pomohli sme
               </button>
               <button
                 onClick={() => scrollToSection("videli-ste-nas")}
-                className="text-gray-700 hover:text-violet-500 transition-colors"
+                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
               >
                 Videli ste nás
               </button>
               <button
                 onClick={() => scrollToSection("aktuality")}  
-                className="text-gray-700 hover:text-violet-500 transition-colors"
+                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
               >
                 Aktuality
               </button>
               <button
                 onClick={() => scrollToSection("kontakt")}
-                className="text-gray-700 hover:text-violet-500 transition-colors"
+                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
               >
                 Kontakt
               </button>
