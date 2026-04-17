@@ -199,7 +199,7 @@ export function MapSection() {
       )}
       
       {/* CSS pre Leaflet Popup aby ladil s tvojím UI */}
-      <style jsx global>{`
+      <style jsx="true" global="true" >{`
         .leaflet-popup-content-wrapper {
           border-radius: 1.5rem !important;
           padding: 0.5rem !important;

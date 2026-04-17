@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-//import Fb from './FacebookFeed.jsx'
 import { Header } from './Header.jsx'
 import { Hero } from './Hero.jsx'
 import Footer from './Footer.jsx'
 import { About } from './About.jsx'
 //import Products from './Products.jsx'
-import FacebookFedd from './FacebookFeed.jsx'
+import { FacebookFeed } from './FacebookFeed.jsx'
 import { Contact } from './Contact.jsx'
 import { HelpButton } from './HelpButton'
 import { Projects } from './Projects.jsx'
@@ -35,8 +34,70 @@ function App() {
     }
   ];
 
+  useEffect(() => {
+    const startObserver = () => {
+      const sections = document.querySelectorAll("section[id]");
+
+      const options = {
+        root: null,
+        rootMargin: '-30% 0px -65% 0px', 
+        threshold: [0, 0.1, 0.5, 0.9], 
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            if (window.location.hash !== `#${id}`) {
+              window.history.replaceState(null, null, `#${id}`);
+            }
+          }
+        });
+      }, options);
+
+      sections.forEach((s) => observer.observe(s));
+      return observer;
+   };
+
+    let observerInstance = startObserver();
+
+    const timer = setTimeout(() => {
+      observerInstance.disconnect();
+      observerInstance = startObserver();
+    }, 5000);
+
+    return () => {
+      observerInstance.disconnect();
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen min-w-full bg-gradient-to-br from-purple-100 via-violet-50 to-indigo-100">
+      {/*}
+      <div 
+        style={{
+          position: 'fixed',
+          left: 0,
+          right: 0,
+          top: '20%',
+          bottom: '70%',
+          backgroundColor: 'rgba(255, 0, 0, 0.2)',
+          borderTop: '2px solid red',
+          borderBottom: '2px solid red',
+          pointerEvents: 'none',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'red',
+          fontWeight: 'bold',
+          fontSize: '12px'
+        }}
+      >
+        DETEKČNÁ ZÓNA
+      </div>
+      */}
       <Header />
       <main>
         <Hero />
@@ -45,7 +106,7 @@ function App() {
         <HelpedSection />
         <MapSection />
         {hasConsent ? (
-          <FacebookFedd url={mojadresa}/>
+          <FacebookFeed url={mojadresa}/>
         ) : (
           <div className="max-w-4xl mx-auto my-10 p-10 bg-white/50 rounded-3xl border-2 border-dashed border-purple-200 text-center">
             <p className="text-gray-600">

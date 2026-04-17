@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Facebook } from "lucide-react";
 
-export default function FacebookFeed({url}) {
+export function FacebookFeed() {
   useEffect(() => {
     // Load Facebook SDK
     if (window.FB) {
@@ -10,7 +10,7 @@ export default function FacebookFeed({url}) {
   }, []);
 
   return (
-    <section id="aktuality" className="py-20 bg-white">
+    <section id="aktuality" className="py-20 bg-white relative">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     {/* Zmena: flex-col pre mobil, flex-row pre počítač (md:) */}
     <div className="flex flex-col md:flex-row gap-12 items-center">
