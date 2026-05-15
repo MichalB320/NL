@@ -44,50 +44,50 @@ export function Header() {
             <nav className="hidden lg:flex space-x-8">
               <button
                 onClick={() => scrollToSection("domov")}
-                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
+                className="text-gray-700 hover:text-[#81007f] transition-colors cursor-pointer"
               >
                 Domov
               </button>
               <button
                 onClick={() => scrollToSection("o-nas")}
-                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
+                className="text-gray-700 hover:text-[#81007f] transition-colors cursor-pointer"
               >
                 O nás
               </button>
               <button
                 onClick={() => scrollToSection("nase-projekty")}
-                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
+                className="text-gray-700 hover:text-[#81007f] transition-colors cursor-pointer"
               >
                 Naše projekty
               </button>
               <button
                 onClick={() => scrollToSection("pomohli-sme")}
-                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
+                className="text-gray-700 hover:text-[#81007f] transition-colors cursor-pointer"
               >
                 Pomohli sme
               </button>
               <button
                 onClick={() => scrollToSection("videli-ste-nas")}
-                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
+                className="text-gray-700 hover:text-[#81007f] transition-colors cursor-pointer"
               >
                 Videli ste nás
               </button>
               <button
                 onClick={() => scrollToSection("aktuality")}
-                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
+                className="text-gray-700 hover:text-[#81007f] transition-colors cursor-pointer"
               >
                 Aktuality
               </button>
               <button
                 onClick={() => scrollToSection("kontakt")}
-                className="text-gray-700 hover:text-violet-500 transition-colors cursor-pointer"
+                className="text-gray-700 hover:text-[#81007f] transition-colors cursor-pointer"
               >
                 Kontakt
               </button>
             </nav>
 
             {/* Mobile menu button */}
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2 text-gray-700 hover:text-violet-500">
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2 text-gray-700 hover:text-[#81007f]">
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -99,43 +99,43 @@ export function Header() {
             <div className="flex flex-col space-y-4">
               <button
                 onClick={() => scrollToSection("domov")}
-                className="text-gray-700 hover:text-violet-500 text-left"
+                className="text-gray-700 hover:text-[#81007f] text-left"
               >
                 Domov
               </button>
               <button
                 onClick={() => scrollToSection("o-nas")}
-                className="text-gray-700 hover:text-violet-500 text-left"
+                className="text-gray-700 hover:text-[#81007f] text-left"
               >
                 O nás
               </button>
               <button
                 onClick={() => scrollToSection("nase-projekty")}
-                className="text-gray-700 hover:text-violet-500 text-left"
+                className="text-gray-700 hover:text-[#81007f] text-left"
               >
                 Naše projekty
               </button>
               <button
                 onClick={() => scrollToSection("pomohli-sme")}
-                className="text-gray-700 hover:text-violet-500 text-left"
+                className="text-gray-700 hover:text-[#81007f] text-left"
               >
                 Pomohli sme
               </button>
               <button
                 onClick={() => scrollToSection("videli-ste-nas")}
-                className="text-gray-700 hover:text-violet-500 text-left"
+                className="text-gray-700 hover:text-[#81007f] text-left"
               >
                 Videli ste nás
               </button>
               <button
                 onClick={() => scrollToSection("aktuality")}
-                className="text-gray-700 hover:text-violet-500 text-left"
+                className="text-gray-700 hover:text-[#81007f] text-left"
               >
                 Aktuality
               </button>
               <button
                 onClick={() => scrollToSection("kontakt")}
-                className="text-gray-700 hover:text-violet-500 text-left"
+                className="text-gray-700 hover:text-[#81007f] text-left"
               >
                 Kontakt
               </button>

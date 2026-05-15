@@ -1,6 +1,5 @@
 import { ImageWithFallback } from "./figma/ImageWithFallback.jsx";
 import { Heart, Quote } from "lucide-react";
-import { motion } from "framer-motion";
 import Logo from './assets/logo.png';
 import HandsImg from "./assets/hands_helping.png";
 
@@ -20,20 +19,20 @@ export function Hero() {
           {/* PRVÝ RIADOK: Otázka a Obrázok */}
           <div className="grid md:grid-cols-2 gap-10 items-center mb-10">
             <div className="flex justify-center items-center">
-              <motion.div animate={{ scale: [1, 1.04, 1] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="relative">
-                <motion.div animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.1, 1] }} transition={{ duration: 4, repeat: Infinity }} className="absolute inset-0 rounded-full bg-purple-300 blur-2xl"/>
+              <div className="relative">
+                <div className="absolute inset-0 rounded-full bg-purple-300 blur-2xl"/>
                 <div className="w-46 h-46 md:w-72 md:h-42 rounded-full overflow-hidden border-[10px] border-white shadow-2xl relative z-10">
                   <img src={HandsImg} alt="Pomoc" className="w-full h-full object-cover" />
                 </div>
-              </motion.div>
+              </div>
             </div>
 
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="relative">
+            <div className="relative">
               <Quote className="absolute -top-6 -left-4 w-10 h-10 text-purple-300 opacity-40 rotate-180" />
               <p className="text-xl md:text-2xl font-semibold text-gray-800 leading-tight italic relative z-10">
                 Viete, že na Slovensku sú rodiny, ktoré si musia vybrať, či zaplatia nájom alebo kúpia jedlo?
               </p>
-            </motion.div>
+            </div>
           </div>
 
           {/* DRUHÝ RIADOK: Logo a Text (Presne podľa tvojho originálu) */}
