@@ -16,6 +16,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import varime from './assets/partneri/varime-logo-slogan.png';
 import jozef from './assets/partneri/logo_jozef.png';
 import lificaffe from './assets/partneri/lificaffe-logo.png';
+import dm from './assets/partneri/dm.png';
 
 function App() {
   const mojadresa = "https://www.facebook.com/profile.php?id=61579157963686";
@@ -139,6 +140,12 @@ function App() {
           <div className="h-20 md:h-28 w-40 md:w-52 flex items-center justify-center grayscale hover:grayscale-0">
             <a href="https://jozefdruhy.sk/" target="_blank" rel="noopener noreferrer" className="h-full w-full flex items-center justify-center hover:scale-110 hover:grayscale-0 transition-transform">
               <ImageWithFallback src={jozef} className="max-h-full max-w-full object-contain"/> 
+            </a>
+          </div>
+
+          <div className="h-20 md:h-28 w-40 md:w-52 flex items-center justify-center grayscale hover:grayscale-0">
+            <a href="https://mojadm.sk/" target="_blank" rel="noopener noreferrer" className="h-full w-full flex items-center justify-center hover:scale-110 hover:grayscale-0 transition-transform">
+              <ImageWithFallback src={dm} className="max-h-full max-w-full object-contain"/> 
             </a>
           </div>
 

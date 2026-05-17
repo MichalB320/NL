@@ -16,10 +16,10 @@ export function About() {
       quote: "Nebuď ľahostajný nie je len názov - je to moja životná cesta. A budem rada, ak sa na ňu pridáte aj vy.",
       description: (
         <>
-          <p key="p1" className="text-gray-700 text-center md:text-left leading-relaxed mb-4">Volám sa <strong>Mariola Janíková</strong> a som zakladateľka OZ Nebuď ľahostajný. V minulosti som pracovala ako manažérka prosperujúcej firmy, no cítila som, že potrebujem ísť inou cestou. Po vyštudovaní som začala pracovať v sociálnej sfére, kde pôsobím už šesť rokov.</p>
-          <p key="p2" className="text-gray-700 text-center md:text-left leading-relaxed mb-4">Pracujem s ľuďmi závislými, bez domova, s týranými osobami či s deťmi, ktoré nikdy nepoznali stabilný domov. Pomáham plniť sny chorým deťom, aj tým, ktoré bojujú o posledné chvíle svojho života. Príbehy týchto ľudí sú plné bolesti, strachu a rezignácie… a niekedy sa pýtam samej seba, prečo je pre nich také ťažké prestať opakovať tie isté chyby.</p>
-          <p key="p3" className="text-gray-700 text-center md:text-left leading-relaxed mb-4">Ale viem, že aj ja robím chyby a celoživotne sa na nich učím. Prešla som si v živote rôznymi skúškami a práve tie ma naučili byť viac autentická a chápavá. Vďaka nim viem, aké dôležité je pristupovať k ľuďom s empatiou, trpezlivosťou a otvoreným srdcom.</p>
-          <p key="p4" className="text-gray-700 text-center md:text-left leading-relaxed mb-4">Za sebou mám niekoľko akreditovaných výcvikov: krízovú intervenciu, psychologickú a sociálnu pomoc v krízových situáciách prostredníctvom internetu a tiež odborných výcvikov projektový špecialista, projektový manažér, motivačné rozhovory v práci s klientami v sociálnoprávnej ochrane detí a sociálnej kurately, prípadová sociálna práca, sociálna práca a sociálne služby, metódy a techniky sociálnej práce a iné.</p>
+          <p key="p1" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Volám sa <strong>Mariola Janíková</strong> a som zakladateľka OZ Nebuď ľahostajný. V minulosti som pracovala ako manažérka prosperujúcej firmy, no cítila som, že potrebujem ísť inou cestou. Po vyštudovaní som začala pracovať v sociálnej sfére, kde pôsobím už šesť rokov.</p>
+          <p key="p2" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Pracujem s ľuďmi závislými, bez domova, s týranými osobami či s deťmi, ktoré nikdy nepoznali stabilný domov. Pomáham plniť sny chorým deťom, aj tým, ktoré bojujú o posledné chvíle svojho života. Príbehy týchto ľudí sú plné bolesti, strachu a rezignácie… a niekedy sa pýtam samej seba, prečo je pre nich také ťažké prestať opakovať tie isté chyby.</p>
+          <p key="p3" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Ale viem, že aj ja robím chyby a celoživotne sa na nich učím. Prešla som si v živote rôznymi skúškami a práve tie ma naučili byť viac autentická a chápavá. Vďaka nim viem, aké dôležité je pristupovať k ľuďom s empatiou, trpezlivosťou a otvoreným srdcom.</p>
+          <p key="p4" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Za sebou mám niekoľko akreditovaných výcvikov: krízovú intervenciu, psychologickú a sociálnu pomoc v krízových situáciách prostredníctvom internetu a tiež odborných výcvikov projektový špecialista, projektový manažér, motivačné rozhovory v práci s klientami v sociálnoprávnej ochrane detí a sociálnej kurately, prípadová sociálna práca, sociálna práca a sociálne služby, metódy a techniky sociálnej práce a iné.</p>
         </>
       ) 
     },
@@ -32,9 +32,9 @@ export function About() {
       quote: "Aj malé skutky môžu viesť k veľkým zmenám.",
       description: (
         <>
-          <p key="p1" className="text-gray-700 text-center md:text-left leading-relaxed mb-4"><strong>Lenka</strong>  je členkou nášho tímu. Je všestrannou ženou pôsobiacou v rôznych organizáciách, ktorá má bohaté skúsenosti z viacerých oblastí sociálneho aj ekonomického života. Vďaka tomu dokáže vidieť súvislosti, chápať širší kontext problémov a ponúkať praktické riešenia. Aktuálne pracuje ako sociálna pracovníčka so zameraním sa na maloleté deti. Denne sa stretáva s rodinami v zložitých životných situáciach, ktoré vyžadujú pochopenie, trpezlivosť a odbornosť.</p>
-          <p key="p2" className="text-gray-700 text-center md:text-left leading-relaxed mb-4">Vo svojej praxi pomáha ľuďom zorientovať sa v ťažkých situáciách, hľadať riešenia a znovu nachádzať istotu. Počúva bez súdenia, podporuje a sprevádza krok za krokom.</p>
-          <p key="p3" className="text-gray-700 text-center md:text-left leading-relaxed mb-4">Ako sama tvrdí naučila sa nevšímať si problémy ľudí len z diaľky. Verí, že aj malé skutky môžu viesť k veľkým zmenám a že aktívny záujem o spoločnosť má zmysel.</p>
+          <p key="p1" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4"><strong>Lenka</strong>  je členkou nášho tímu. Je všestrannou ženou pôsobiacou v rôznych organizáciách, ktorá má bohaté skúsenosti z viacerých oblastí sociálneho aj ekonomického života. Vďaka tomu dokáže vidieť súvislosti, chápať širší kontext problémov a ponúkať praktické riešenia. Aktuálne pracuje ako sociálna pracovníčka so zameraním sa na maloleté deti. Denne sa stretáva s rodinami v zložitých životných situáciach, ktoré vyžadujú pochopenie, trpezlivosť a odbornosť.</p>
+          <p key="p2" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Vo svojej praxi pomáha ľuďom zorientovať sa v ťažkých situáciách, hľadať riešenia a znovu nachádzať istotu. Počúva bez súdenia, podporuje a sprevádza krok za krokom.</p>
+          <p key="p3" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Ako sama tvrdí naučila sa nevšímať si problémy ľudí len z diaľky. Verí, že aj malé skutky môžu viesť k veľkým zmenám a že aktívny záujem o spoločnosť má zmysel.</p>
         </>
       )
     },
@@ -47,8 +47,8 @@ export function About() {
       quote: "Je dôkazom toho, že aj bežný človek môže byť silnou oporou pre iných.",
       description: (
       <>
-        <p key="p1" className="text-gray-700 text-center md:text-left leading-relaxed mb-4"><strong>Lesana</strong> je členkou nášho tímu. Je to mama troch detí, ktorá má veľké srdce a dlhodobo sa venuje podpore žien v ťažkých životných situáciách.</p>
-        <p key="p2" className="text-gray-700 text-center md:text-left leading-relaxed mb-4">Organizuje zbierky, pomáha obetiam domáceho násilia a stojí po boku žien, ktoré potrebujú oporu. Počúva, motivuje a sprevádza.</p>
+        <p key="p1" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4"><strong>Lesana</strong> je členkou nášho tímu. Je to mama troch detí, ktorá má veľké srdce a dlhodobo sa venuje podpore žien v ťažkých životných situáciách.</p>
+        <p key="p2" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Organizuje zbierky, pomáha obetiam domáceho násilia a stojí po boku žien, ktoré potrebujú oporu. Počúva, motivuje a sprevádza.</p>
       </>
       )
     },
@@ -61,7 +61,7 @@ export function About() {
       quote: "",
       description: (
       <>
-        <p key="p1" className="text-gray-700 text-center md:text-left leading-relaxed mb-4"><strong>Dominika</strong> je plnohodnotnou členkou nášho tímu. Má bohaté skúsenosti s prácou s ľuďmi, je prirodzene spoločenská a ku každej výzve pristupuje s odhodlaním a riešením. Žiadny problém pre ňu nie je neriešiteľný – vždy hľadá cestu, ako veci posunúť vpred. Do tímu prináša energiu, elán a pozitívnu náladu, ktorá je často nákazlivá a motivuje aj ostatných.</p>
+        <p key="p1" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4"><strong>Dominika</strong> je plnohodnotnou členkou nášho tímu. Má bohaté skúsenosti s prácou s ľuďmi, je prirodzene spoločenská a ku každej výzve pristupuje s odhodlaním a riešením. Žiadny problém pre ňu nie je neriešiteľný – vždy hľadá cestu, ako veci posunúť vpred. Do tímu prináša energiu, elán a pozitívnu náladu, ktorá je často nákazlivá a motivuje aj ostatných.</p>
       </>
       )
     }

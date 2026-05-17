@@ -4,7 +4,7 @@ import Logo from './assets/logo.png';
 import Logo2 from './assets/logo2.png';
 
 export function Header() {
-  const isDonateVisible = false;
+  const isDonateVisible = true;
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showDonateInfo, setShowDonateInfo] = useState(false);

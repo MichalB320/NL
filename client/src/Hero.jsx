@@ -12,7 +12,7 @@ export function Hero() {
   };
 
   return (
-    <section id="domov" className="py-20 px-4 relative bg-gradient-to-br from-purple-50 via-violet-50 to-indigo-100 overflow-hidden min-h-screen flex items-center">
+    <section id="domov" className="py-20 px-4 relative bg-gradient-to-br from-purple-80 via-violet-80 to-indigo-100 overflow-hidden min-h-screen flex items-center">
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="bg-white/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 p-7 md:p-12 lg:p-16">
           
@@ -21,17 +21,26 @@ export function Hero() {
             <div className="flex justify-center items-center">
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-purple-300 blur-2xl"/>
-                <div className="w-46 h-46 md:w-72 md:h-42 rounded-full overflow-hidden border-[10px] border-white shadow-2xl relative z-10">
+                <div className="w-46 h-46 md:w-82 md:h-42 rounded-full overflow-hidden border-[10px] border-white shadow-2xl relative z-10">
                   <img src={HandsImg} alt="Pomoc" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
 
             <div className="relative">
-              <Quote className="absolute -top-6 -left-4 w-10 h-10 text-purple-300 opacity-40 rotate-180" />
-              <p className="text-xl md:text-2xl font-semibold text-gray-800 leading-tight italic relative z-10">
-                Viete, že na Slovensku sú rodiny, ktoré si musia vybrať, či zaplatia nájom alebo kúpia jedlo?
-              </p>
+              {/*<Quote className="absolute top-2 -left-8 w-8 h-8 text-purple-300 opacity-40 " />*/}
+                <p className="text-center md:text-left text-xl md:text-xl lg:text-3xl font-semibold text-gray-800 leading-tight italic relative z-10">
+                  <span className="relative whitespace-nowrap pl-6">
+                    <Quote className="absolute top-3 left-1 lg:top-4 lg:-left-2 w-5 h-5 lg:w-8 lg:h-8 text-[#81007f] opacity-18" />
+                  Viete,
+                  </span>
+                  {" "}že na Slovensku sú rodiny, ktoré si musia vybrať, či zaplatia nájom alebo kúpia{" "}
+                  {/* Tento span pripúta úvodzovku priamo za otáznik */}
+                  <span className="relative whitespace-nowrap">
+                    jedlo?
+                    <Quote className="absolute -top-1 left-full w-5 h-5 lg:w-8 lg:h-8 text-[#81007f] opacity-18 rotate-180 ml-1" />
+                  </span>
+                </p>
             </div>
           </div>
 
@@ -44,7 +53,7 @@ export function Hero() {
               <h2 className="text-2xl md:text-2xl lg:text-5xl font-extrabold text-gray-800 mb-6 leading-tight">
                 Podaj pomocnú ruku
               </h2>
-              <p className="text-sm md:text-base text-gray-600 mb-8 leading-relaxed italic border-l-4 border-[#81007f] pl-6">
+              <p className="text-sm md:text-base text-gray-600 mb-8 leading-relaxed italic border-l-4 border-[#81007f] pl-6 text-justify font-medium">
                 Sú deti, ktoré nemajú ani na cestu do školy. Matky, samoživiteľky, ktoré ledva zaplatia nájom a hrozí im vysťahovanie? Ľudia, ktorí prišli o domov, pretože život im priniesol viac bolesti, než dokázali uniesť? My podávame pomocnú ruku tým, ktorí ju najviac potrebujú. Poskytujeme podporu, poradenstvo a materiálnu aj finančnú pomoc rodinám, deťom aj dospelým v ťažkých životných situáciách. Pomáhame srdcom. Veríme v zmenu. Rešpektujeme každého z vás.
               </p>
               

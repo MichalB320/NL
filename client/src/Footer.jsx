@@ -14,8 +14,8 @@ export default function Footer() {
               <Heart className="text-[#81007f] fill-[#81007f]" size={24} />
               <h3 className="text-xl font-bold">Nebuď Ľahostajný</h3>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Sme občianske združenie zo Skalice. Naším poslaním je podávať pomocnú ruku rodinám a deťom v ťažkých životných situáciách. Spolu tvoríme lepšiu budúcnosť.
+            <p className="text-gray-400 text-sm text-justify leading-relaxed">
+              Sme občianske združenie pôsobiace najmä v Skalici a okolí. Naším poslaním je podávať pomocnú ruku rodinám a deťom v ťažkých životných situáciách. Spolu tvoríme lepšiu budúcnosť.
             </p>
             <div className="pt-2">
               <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Identifikačné údaje:</p>
@@ -43,7 +43,7 @@ export default function Footer() {
                       const element = document.getElementById(link.id);
                       if (element) element.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="text-gray-400 hover:text-[#81007f] hover:translate-x-1 transition-all duration-300 text-sm"
+                    className="text-gray-400 hover:text-[#81007f] hover:translate-x-1 transition-all duration-300 text-sm cursor-pointer"
                   >
                     {link.label}
                   </button>
