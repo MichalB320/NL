@@ -22,7 +22,7 @@ export function MapSection() {
   const [activeLocation, setActiveLocation] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(null);
   const [isImageLoading, setIsImageLoading] = useState(false);
-  const [selectedLocationId, setSelectedLocationId] = useState(null);
+  const [selectedLocationId, setSelectedLocationId] = useState(1);
 
   const handleMarkerClick = (locId) => {
     setSelectedLocationId(locId);
@@ -66,7 +66,7 @@ export function MapSection() {
     {
       id: 1,
       city: "Skalica",
-      descritption: "Vianočné trhy 2025",
+      description: "Vianočné trhy 2025",
       coords: [48.84612012770536, 17.22889819851306],
       images: [trhy1, trhy2, trhy3, trhy4],
       event: "Naša prvá „veľká“ akcia v rámci občianskeho združenia Nebuď ľahostajný sa konala počas adventného obdobia, keď sme mali možnosť byť súčasťou vianočných trhov v Skalici. Vďaka podpore organizátora sme mali na trhoch vlastný stánok, v ktorom sme rozdávali dobrú náladu, úsmevy a radi sme sa podelili s návštevníkmi o množstvo sladkých dobrôt. Na vianočných trhoch sme spojili sily aj so Sandrou z Varimeblog, ktorá nám napiekla množstvo výborných domácich maškŕt. Aj vďaka nej mal náš stánok krásnu atmosféru a návštevníci si mohli pochutnať na niečom naozaj výnimočnom. Tiež s naším sponzorom LiFicaffe okienko s perfektnou kávičkou, ktorá voňala široko ďaleko. :) Výťažok zo zbierky sme následne použili na nákup vianočných darčekov pre deti a na pomoc rodinám v rámci okresu Skalica. Pomoc mala rôzne podoby – od potravinovej pomoci až po hygienické potreby pre rodiny, ktoré to najviac potrebujú. Zo srdca ďakujeme všetkým, ktorí sa pri našom stánku zastavili, podporili nás a stali sa súčasťou tejto krásnej myšlienky. Aj vďaka vám môžeme pomáhať tam, kde je to najviac potrebné. Zároveň ďakujeme organizatorovi pánovi Hrehorovi, vďaka ktorému sme sa mohli stánkov zúčastniť. Nebuďme ľahostajní ❤️"
@@ -105,6 +105,11 @@ export function MapSection() {
                       position={loc.coords} 
                       icon={customIcon}
                       eventHandlers={{
+                        add: (e) => {
+                          if (loc.id === 1) {
+                            e.target.openPopup(); // Leaflet sám otvorí popup hneď, ako sa vykreslí
+                          }
+                        },
                         click: () => handleMarkerClick(loc.id), // REAKCIA NA KLIK
                       }}
                     >
@@ -113,7 +118,7 @@ export function MapSection() {
                           <h4 className="text-sm font-bold text-gray-800 flex items-center gap-2 mb-1">
                              <MapPin className="w-4 h-4 text-purple-600" /> {loc.city}
                           </h4>
-                          <p className="text-[10px] text-gray-600">{loc.descritption}</p>
+                          <p className="text-[10px] text-gray-600">{loc.description}</p>
                         </div>
                       </Popup>
                     </Marker>
