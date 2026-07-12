@@ -5,11 +5,12 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import GalleryStack from "./components/GalleryStack.jsx";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import trhy1 from "./assets/videli-ste-nas/trhy/trhy1.jpeg";
-import trhy2 from "./assets/videli-ste-nas/trhy/trhy2.jpeg";
-import trhy3 from "./assets/videli-ste-nas/trhy/trhy3.jpeg";
-import trhy4 from "./assets/videli-ste-nas/trhy/trhy4.jpg";
-import { Action } from "./components/Action.jsx";
+//import trhy1 from "./assets/videli-ste-nas/trhy/trhy1.jpeg";
+//import trhy2 from "./assets/videli-ste-nas/trhy/trhy2.jpeg";
+//import trhy3 from "./assets/videli-ste-nas/trhy/trhy3.jpeg";
+//import trhy4 from "./assets/videli-ste-nas/trhy/trhy4.jpg";
+//import { Action } from "./components/Action.jsx";
+import { supabase } from "./supabaseClient";
 
 const customIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png", 
@@ -19,10 +20,39 @@ const customIcon = new L.Icon({
 });
 
 export function MapSection() {
+  const [locations, setLocations] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const [activeLocation, setActiveLocation] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(null);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [selectedLocationId, setSelectedLocationId] = useState(1);
+
+  // NAČÍTANIE DÁT ZO SUPABASE
+  useEffect(() => {
+    async function fetchLocations() {
+      try {
+        setLoading(true);
+        const { data, error } = await supabase.from("Actions").select("*");
+        console.log("Načítané lokácie zo Supabase:", data);
+
+        if (error) throw error;
+
+        setLocations(data || []);
+        
+        // Predvolene označíme prvú načítanú lokalitu, ak nejaká existuje
+        if (data && data.length > 0) {
+          setSelectedLocationId(1);
+        }
+      } catch (error) {
+        console.error("Chyba pri načítaní lokácií:", error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchLocations();
+  }, []);
 
   const handleMarkerClick = (locId) => {
     setSelectedLocationId(locId);
@@ -62,6 +92,7 @@ export function MapSection() {
     return () => { document.body.style.overflow = 'unset'; }
   }, [activeImageIndex]);
 
+  /*
   const locations = [
     {
       id: 1,
@@ -72,8 +103,18 @@ export function MapSection() {
       event: "Naša prvá „veľká“ akcia v rámci občianskeho združenia Nebuď ľahostajný sa konala počas adventného obdobia, keď sme mali možnosť byť súčasťou vianočných trhov v Skalici. Vďaka podpore organizátora sme mali na trhoch vlastný stánok, v ktorom sme rozdávali dobrú náladu, úsmevy a radi sme sa podelili s návštevníkmi o množstvo sladkých dobrôt. Na vianočných trhoch sme spojili sily aj so Sandrou z Varimeblog, ktorá nám napiekla množstvo výborných domácich maškŕt. Aj vďaka nej mal náš stánok krásnu atmosféru a návštevníci si mohli pochutnať na niečom naozaj výnimočnom. Tiež s naším sponzorom LiFicaffe okienko s perfektnou kávičkou, ktorá voňala široko ďaleko. :) Výťažok zo zbierky sme následne použili na nákup vianočných darčekov pre deti a na pomoc rodinám v rámci okresu Skalica. Pomoc mala rôzne podoby – od potravinovej pomoci až po hygienické potreby pre rodiny, ktoré to najviac potrebujú. Zo srdca ďakujeme všetkým, ktorí sa pri našom stánku zastavili, podporili nás a stali sa súčasťou tejto krásnej myšlienky. Aj vďaka vám môžeme pomáhať tam, kde je to najviac potrebné. Zároveň ďakujeme organizatorovi pánovi Hrehorovi, vďaka ktorému sme sa mohli stánkov zúčastniť. Nebuďme ľahostajní ❤️"
     },
   ];
+  */
 
   const displayedLocations = selectedLocationId ? locations.filter(l => l.id === selectedLocationId) : [];
+
+  if (loading) {
+    return (
+      <div className="py-20 flex flex-col items-center justify-center min-h-[400px]">
+        <Loader2 className="w-12 h-12 text-purple-600 animate-spin mb-4" />
+        <p className="text-gray-500 italic">Načítavam mapu a podujatia...</p>
+      </div>
+    );
+  }
 
   return (
     <section id="videli-ste-nas" className="py-20 px-4 relative">
@@ -92,8 +133,8 @@ export function MapSection() {
               {/* MAPA */}
               <div className="lg:col-span-2 relative rounded-2xl overflow-hidden shadow-xl h-[500px] z-0 border-4 border-white">
                 <MapContainer 
-                  center={[48.84612012770536, 17.22889819851306]} 
-                  zoom={14} 
+                  center={[48.851037, 17.230965]} 
+                  zoom={15} 
                   style={{ height: "100%", width: "100%" }}
                   scrollWheelZoom={false}
                 >

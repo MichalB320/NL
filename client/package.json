@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.110.2",
     "@tailwindcss/vite": "^4.1.18",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.563.0",

@@ -13,12 +13,18 @@ import { CookieConsent } from './CookieConsent.jsx'
 import { HelpedSection } from './Helped.jsx'
 import { MapSection} from './Map.jsx';
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { AdminPage } from './Admin.jsx';
 import varime from './assets/partneri/varime-logo-slogan.png';
 import jozef from './assets/partneri/logo_jozef.png';
 import lificaffe from './assets/partneri/lificaffe-logo.png';
 import dm from './assets/partneri/dm.png';
 
 function App() {
+  const currentPath = window.location.pathname;
+  if (currentPath === "/admin") {
+    return <AdminPage />;
+  }
+
   const mojadresa = "https://www.facebook.com/profile.php?id=61579157963686";
   const [hasConsent, setHasConsent] = useState(false);
   useEffect(() => {
