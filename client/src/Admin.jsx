@@ -1,77 +1,57 @@
 import React, { useState, useEffect } from "react";
-import { supabase } from "./supabaseClient";
-import { Loader2, PlusCircle, LogOut } from "lucide-react";
+import { supabase } from "./supabaseClient.js";
+import { Loader2, LogOut, Heart, Users, Eye } from "lucide-react";
+
+// Import rozdelených komponentov
+import { Login } from "./admin/login.jsx";
+import { AdminPomohliSme } from "./admin/admin_pomohli-sme.jsx";
+import { AdminMembers } from "./admin/admin_members.jsx";
+import { AdminVideliSteNas } from "./admin/admin_videli-ste-nas.jsx";
 
 export function AdminPage() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
-  
-  // Stavy pre prihlasovací formulár
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  
-  // Stavy pre formulár pridávania dát
-  const [city, setCity] = useState("");
-  const [date, setDate] = useState("");
-  const [eventText, setEventText] = useState("");
-  const [description, setDescription] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentHash, setCurrentHash] = useState(window.location.hash || "#/admin");
 
-  // Sledovanie, či je admin prihlásený
+  // 1. Správa relácie (Session) zo Supabase
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      
+      // Ak už sme prihlásení a prídeme na čisté #/admin, až teraz ho presmerujeme
+      if (session && window.location.hash === "#/admin") {
+        window.location.hash = "#/admin/pomohli-sme";
+      }
+      
       setLoading(false);
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      
+      // Kľúčový moment: Ak nastane udalosť prihlásenia (SIGNED_IN) a sme na #/admin, skočíme na prvú podsekciu
+      if (_event === "SIGNED_IN" && window.location.hash === "#/admin") {
+        window.location.hash = "#/admin/pomohli-sme";
+      }
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
-  // Prihlásenie
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) alert("Chyba prihlásenia: " + error.message);
-    setLoading(false);
-  };
+  // 2. Sledovanie zmien hashu pre prepínanie záložiek (iba ak sme prihlásení)
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash);
+    };
 
-  // Odhlásenie
-  const handleLogout = () => supabase.auth.signOut();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
-  // Odoslanie novej akcie do databázy
-  const handleSubmitAction = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Vložíme dáta do tabuľky Help (alebo Actions)
-    const { data, error } = await supabase.from("Help").insert([
-      {
-        city: city,
-        date: date, // formát YYYY-MM-DD z inputu typu date
-        event: eventText,
-        description: description,
-        coords: [48.85, 17.23], // Predvolené alebo pridaj inputy pre súradnice
-        images: [] // Tu neskôr prepojíš Supabase Storage bucket, zatiaľ prázdne pole
-      },
-    ]);
-
-    setIsSubmitting(false);
-
-    if (error) {
-      alert("Chyba pri ukladaní: " + error.message);
-    } else {
-      alert("Akcia bola úspešne pridaná!");
-      // Vyčistenie formulára
-      setCity("");
-      setEventText("");
-      setDescription("");
-      setDate("");
-    }
+  const handleLogout = () => {
+    supabase.auth.signOut();
+    // Po odhlásení vrátime URL späť na čistý admin panel
+    window.location.hash = "#/admin";
   };
 
   if (loading) {
@@ -82,71 +62,76 @@ export function AdminPage() {
     );
   }
 
-  // 1. AK POUŽÍVATEĽ NIE JE PRIHLÁSENÝ -> ZOBRAZ LOGIN FORMULÁR
+  // Ak neexistuje relácia, bezpečne renderujeme Login na adrese #/admin
   if (!session) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-        <div className="max-w-md w-full bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
-          <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Admin Panel</h2>
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-500 outline-none" required />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Heslo</label>
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-500 outline-none" required />
-            </div>
-            <button type="submit" className="w-full py-3 bg-[#81007f] text-white rounded-xl font-semibold hover:bg-purple-700 transition-colors">
-              Prihlásiť sa
-            </button>
-          </form>
-        </div>
-      </div>
-    );
+    return <Login setLoading={setLoading} />;
   }
 
-  // 2. AK JE PRIHLÁSENÝ -> ZOBRAZ ADMIN ROZHRANIE
+  const menuItems = [
+    { id: "#/admin/clenky", label: "Členky", icon: <Users size={18} /> },
+    { id: "#/admin/pomohli-sme", label: "Pomohli sme", icon: <Heart size={18} /> },
+    { id: "#/admin/videli-ste-nas", label: "Videli ste nás", icon: <Eye size={18} /> },
+  ];
+
+  const renderForm = () => {
+    switch (currentHash) {
+      case "#/admin/pomohli-sme":
+        return <AdminPomohliSme />;
+      case "#/admin/clenky":
+        return <AdminMembers />;
+      case "#/admin/videli-ste-nas":
+        return <AdminVideliSteNas />;
+      default:
+        // Ochrana, ak by sme predsa len boli na čistom #/admin (sekundu po logine)
+        return <AdminPomohliSme />;
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 p-6 md:p-12">
-      <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-100">
-        <div className="flex justify-between items-center mb-8 border-b pb-4">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-800">Pridať novú udalosť</h1>
-            <p className="text-sm text-gray-500">Prihlásený ako: {session.user.email}</p>
+    <div className="min-h-screen bg-purple-100 p-4 md:p-8 flex items-center justify-center">
+      <div className="w-full max-w-5xl flex flex-col md:flex-row gap-6 items-start">
+        
+        {/* AKTÍVNY FORMULÁR */}
+        <div className="flex-1 w-full bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-100 order-2 md:order-1">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-8 border-b pb-4 gap-4">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-800">
+                Správa sekcie: {menuItems.find(item => item.id === currentHash)?.label || "Pomohli sme"}
+              </h1>
+              <p className="text-sm text-gray-500">Prihlásený: {session.user.email}</p>
+            </div>
+            <button onClick={handleLogout} className="flex items-center self-start sm:self-auto gap-2 px-4 py-2 border border-red-200 text-red-600 rounded-xl hover:bg-red-50 transition-colors text-sm font-medium cursor-pointer">
+              <LogOut size={16} /> Odhlásiť sa
+            </button>
           </div>
-          <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 border border-red-200 text-red-600 rounded-xl hover:bg-red-50 transition-colors text-sm font-medium">
-            <LogOut size={16} /> Odhlásiť sa
-          </button>
+
+          {renderForm()}
         </div>
 
-        <form onSubmit={handleSubmitAction} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Mesto / Lokácia</label>
-              <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="napr. Skalica" className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500" required />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Dátum konania</label>
-              <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500" required />
-            </div>
-          </div>
+        {/* PRAVÉ BOČNÉ MENU */}
+        <div className="w-full md:w-64 bg-white rounded-3xl shadow-xl p-5 border border-gray-100 flex flex-col gap-2 order-1 md:order-2">
+          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider px-3 mb-2">
+            Vyberte sekciu
+          </p>
+          {menuItems.map((item) => {
+            const isActive = currentHash === item.id;
+            return (
+              <a
+                key={item.id}
+                href={item.id}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 ${
+                  isActive
+                    ? "bg-[#81007f] text-white shadow-md shadow-purple-200 translate-x-1"
+                    : "text-gray-600 hover:bg-purple-50 hover:text-purple-700"
+                }`}
+              >
+                {item.icon}
+                {item.label}
+              </a>
+            );
+          })}
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Krátky popis (Description)</label>
-            <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="napr. Vianočné trhy 2025" className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500" required />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Celý príbeh / Text udalosti (Podporuje Markdown odkazy)</label>
-            <textarea value={eventText} onChange={(e) => setEventText(e.target.value)} rows={6} placeholder="Tu napíš celý text. Ak chceš odkaz, použi [Názov](https://...)" className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500 font-sans" required />
-          </div>
-
-          <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-[#81007f] text-white rounded-xl font-semibold hover:bg-purple-700 transition-colors flex items-center justify-center gap-2 disabled:bg-purple-400">
-            {isSubmitting ? <Loader2 className="animate-spin" /> : <PlusCircle size={20} />}
-            Publikovať na web
-          </button>
-        </form>
       </div>
     </div>
   );

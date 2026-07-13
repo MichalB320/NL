@@ -21,7 +21,8 @@ export function TeamMember({ name, role, description, image, icon: Icon, quote }
             <div className="relative rounded-2xl overflow-hidden shadow-xl ring-4 ring-white/50">
               <ImageWithFallback
                 src={ image }
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
                 alt={ name }
                 className="w-full h-auto"
               />
@@ -37,8 +38,9 @@ export function TeamMember({ name, role, description, image, icon: Icon, quote }
         {/* Popis a citat */}
         <div className="md:col-span-2">
           <div className="prose prose-lg max-w-none">
-            { description }
             
+            <p className="text-gray-700 text-center md:text-justify leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: description }}></p>
+
             { (() => {
               if (quoteBar != "") {
                 return (

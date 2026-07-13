@@ -61,8 +61,8 @@ export function Action({ action }) {
 
         {/* Popis akcie s funkciou Zobraziť viac */}
         <div className="mb-8">
-          <p className={`text-justify text-gray-700 text-sm leading-relaxed ${!isExpanded ? "line-clamp-4 lg:line-clamp-none" : "lg:line-clamp-none"}`}>
-            {action.description}
+          <p className={`text-justify text-gray-700 text-sm leading-relaxed ${!isExpanded ? "line-clamp-4 lg:line-clamp-none" : "lg:line-clamp-none"}`} dangerouslySetInnerHTML={{ __html: action.description }}>
+            
           </p>
           <button onClick={toggleDescription} className="lg:hidden mt-2 text-[#81007f] font-bold text-sm hover:underline">
             {isExpanded ? "Zobraziť menej" : "zobraziť viac"}

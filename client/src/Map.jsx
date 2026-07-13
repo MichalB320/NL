@@ -34,7 +34,7 @@ export function MapSection() {
       try {
         setLoading(true);
         const { data, error } = await supabase.from("Actions").select("*");
-        console.log("Načítané lokácie zo Supabase:", data);
+        //console.log("Načítané lokácie zo Supabase:", data);
 
         if (error) throw error;
 
@@ -185,8 +185,8 @@ export function MapSection() {
                            </button>
                         )}
                       </div>
-                      <p className="text-justify text-gray-600 text-sm leading-relaxed mb-4">
-                        {loc.event}
+                      <p className="text-justify text-gray-600 text-sm leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: loc.event }}>
+                        
                       </p>
 
                       <GalleryStack images={loc.images} onOpenLightbox={(index) => openLightbox(loc, index)} />

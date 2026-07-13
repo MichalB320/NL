@@ -20,10 +20,16 @@ import lificaffe from './assets/partneri/lificaffe-logo.png';
 import dm from './assets/partneri/dm.png';
 
 function App() {
-  const currentPath = window.location.pathname;
-  if (currentPath === "/admin") {
-    return <AdminPage />;
-  }
+  const [currentHash, setCurrentHash] = useState(window.location.hash);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const mojadresa = "https://www.facebook.com/profile.php?id=61579157963686";
   const [hasConsent, setHasConsent] = useState(false);
@@ -43,6 +49,8 @@ function App() {
 
   useEffect(() => {
     const startObserver = () => {
+      if (currentHash.startsWith("#/admin")) return;
+
       const sections = document.querySelectorAll("section[id]");
 
       const options = {
@@ -55,7 +63,7 @@ function App() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const id = entry.target.getAttribute("id");
-            if (window.location.hash !== `#${id}`) {
+            if (window.location.hash !== `#${id}` && !window.location.hash.startsWith("#/admin")) {
               window.history.replaceState(null, null, `#${id}`);
             }
           }
@@ -74,10 +82,14 @@ function App() {
     }, 5000);
 
     return () => {
-      observerInstance.disconnect();
+      if (observerInstance) observerInstance.disconnect();
       clearTimeout(timer);
     };
-  }, []);
+  }, [currentHash]);
+
+  if (currentHash.startsWith("#/admin")) {
+    return <AdminPage />;
+  }
 
   return (
     <div className="min-h-screen min-w-full bg-gradient-to-br from-purple-100 via-violet-50 to-indigo-100">
