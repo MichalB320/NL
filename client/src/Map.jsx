@@ -133,8 +133,8 @@ export function MapSection() {
               {/* MAPA */}
               <div className="lg:col-span-2 relative rounded-2xl overflow-hidden shadow-xl h-[500px] z-0 border-4 border-white">
                 <MapContainer 
-                  center={[48.851037, 17.230965]} 
-                  zoom={15} 
+                  center={ [48.482869, 17.175551] /*[48.851037, 17.230965]*/} 
+                  zoom={8/*15*/} 
                   style={{ height: "100%", width: "100%" }}
                   scrollWheelZoom={false}
                 >

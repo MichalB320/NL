@@ -37,9 +37,9 @@ export function AdminVideliSteNas() {
     }
   };
 
-  const handleEditClick =  async (event) => {
+  const handleEditClick = async (event) => {
     const { data } = await supabase.from("Actions").select("*").eq("id", event.id);
-    
+
     setEditingId(data[0].id);
     console.log(data[0].id);
     setCity(data[0].city);
@@ -104,7 +104,13 @@ export function AdminVideliSteNas() {
         imageUrls = newImageUrls;
       }
 
-      const rowData = {city, description, coords: gps, images: imageUrls, event};
+      const parts = gps.split(',').map(coord => coord.trim());
+      const lat = parseFloat(parts[0]);
+      const lng = parseFloat(parts[1]);
+      if (isNaN(lat) || isNaN(lng)) throw new Error("Zadané GPS súradnice nie sú platné. Zadajte ich v tvare: 48.85, 17.23");
+      const gpsCoords = [lat, lng];
+
+      const rowData = { city, description, coords: gpsCoords, images: imageUrls, event };
 
       if (editingId) {
         const { error: updateError } = await supabase.from("Actions").update(rowData).eq("id", editingId);
@@ -207,7 +213,7 @@ export function AdminVideliSteNas() {
 
         <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-[#81007f] text-white rounded-xl font-semibold hover:bg-purple-700 transition-colors flex items-center justify-center gap-2 disabled:bg-purple-400 cursor-pointer">
           {isSubmitting ? <Loader2 className="animate-spin" /> : <PlusCircle size={20} />}
-          { editingId ? "Uložiť zmeny" : "Publikovať do: Videli ste nás" }
+          {editingId ? "Uložiť zmeny" : "Publikovať do: Videli ste nás"}
         </button>
       </form>
 
@@ -221,8 +227,8 @@ export function AdminVideliSteNas() {
           <p className="text-gray-500 text-sm">Žiadne akcie zatiaľ neboli pridané.</p>
         ) : (
           <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-            
-            
+
+
             <table className="w-full border-collapse text-left text-sm text-gray-500 hidden lg:table">
               <thead className="bg-gray-50 text-xs uppercase text-gray-700 font-semibold border-b border-gray-200">
                 <tr>
@@ -255,18 +261,57 @@ export function AdminVideliSteNas() {
                     <td className="px-6 py-4 font-medium text-gray-900">{event.description}</td>
                     <td className="px-6 py-4 text-right whitespace-nowrap">
                       <div className="flex justify-end gap-3">
-                      <button type="button" onClick={() => handleEditClick(event)} className="text-blue-600 hover:text-blue-800 transition-colors flex items-center gap-1 cursor-pointer">
-                        <Pencil size={16} /> Upraviť
-                      </button>
-                      <button type="button" onClick={() => handleDeleteClick(event.id)} className="text-red-600 hover:text-red-800 transition-colors flex items-center gap-1 cursor-pointer">
-                        <Trash2 size={16} /> Zmazať
-                      </button>
+                        <button type="button" onClick={() => handleEditClick(event)} className="text-blue-600 hover:text-blue-800 transition-colors flex items-center gap-1 cursor-pointer">
+                          <Pencil size={16} /> Upraviť
+                        </button>
+                        <button type="button" onClick={() => handleDeleteClick(event.id)} className="text-red-600 hover:text-red-800 transition-colors flex items-center gap-1 cursor-pointer">
+                          <Trash2 size={16} /> Zmazať
+                        </button>
                       </div>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+
+            {/* MOBILNÁ VERZIA (Karty) */}
+            <div className="grid grid-cols-1 divide-y divide-gray-200 lg:hidden">
+              {events.map((eventItem) => (
+                <div key={eventItem.id} className="p-4 flex flex-col gap-3 hover:bg-gray-50">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="font-semibold text-gray-900 text-base">{eventItem.description}</div>
+                      <div className="text-xs text-gray-500 mt-0.5">
+                        {eventItem.city}
+                      </div>
+                    </div>
+
+                    {/* Akcie na mobile */}
+                    <div className="flex flex-col gap-2 text-right flex-shrink-0">
+                      <button type="button" onClick={() => handleEditClick(eventItem)} className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center gap-1 justify-end cursor-pointer">
+                        <Pencil size={14} /> Upraviť
+                      </button>
+                      <button type="button" onClick={() => handleDeleteClick(eventItem.id)} className="text-red-600 hover:text-red-800 text-sm font-medium flex items-center gap-1 justify-end cursor-pointer">
+                        <Trash2 size={14} /> Zmazať
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Zobrazenie miniatúr fotiek na mobile */}
+                  <div className="flex gap-1.5 overflow-x-auto pb-1">
+                    {eventItem.images && eventItem.images.length > 0 ? (
+                      eventItem.images.map((img, idx) => (
+                        <img key={idx} src={img} alt="" className="h-10 w-10 rounded-lg object-cover bg-gray-100 flex-shrink-0" />
+                      ))
+                    ) : (
+                      <span className="text-xs text-gray-400">Žiadne priložené fotky</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+
           </div>
         )}
       </div>
