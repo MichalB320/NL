@@ -17,7 +17,7 @@ export function About() {
         setLoading(true);
         
         const { data, error } = await supabase.from("Member").select("*").order("id", { ascending: true });
-        console.log("Načítané údaje o tíme zo Supabase:", data);
+        //console.log("Načítané údaje o tíme zo Supabase:", data);
 
         if (error) throw error;
 

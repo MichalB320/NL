@@ -1,23 +1,94 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { MapPin, X, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
-import { createPortal } from "react-dom"; 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { createPortal } from "react-dom";
+import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import GalleryStack from "./components/GalleryStack.jsx";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-//import trhy1 from "./assets/videli-ste-nas/trhy/trhy1.jpeg";
-//import trhy2 from "./assets/videli-ste-nas/trhy/trhy2.jpeg";
-//import trhy3 from "./assets/videli-ste-nas/trhy/trhy3.jpeg";
-//import trhy4 from "./assets/videli-ste-nas/trhy/trhy4.jpg";
-//import { Action } from "./components/Action.jsx";
+import "leaflet.markercluster/dist/MarkerCluster.css";
+import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+import "leaflet.markercluster";
 import { supabase } from "./supabaseClient";
 
 const customIcon = new L.Icon({
-  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png", 
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
   iconSize: [38, 38],
   iconAnchor: [19, 38],
   popupAnchor: [0, -38],
 });
+
+function MarkerClusterGroup({ locations, onMarkerClick, defaultOpenId }) {
+  const map = useMap();
+
+  // Použijeme ref na callback, aby sme nemuseli spúšťať celý useEffect znova
+  // pri každej zmene referencie funkcie handleMarkerClick
+  const onClickRef = useRef(onMarkerClick);
+  useEffect(() => {
+    onClickRef.current = onMarkerClick;
+  }, [onMarkerClick]);
+
+  useEffect(() => {
+    if (!map || locations.length === 0) return;
+
+    const markerClusterGroup = L.markerClusterGroup({
+      showCoverageOnHover: false,
+      zoomToBoundsOnClick: true,
+      spiderfyOnMaxZoom: true,
+      chunkedLoading: true
+    });
+
+    const markers = [];
+
+    locations.forEach((loc) => {
+      if (!loc.coords || !Array.isArray(loc.coords) || loc.coords.length !== 2) return;
+      if (isNaN(loc.coords[0]) || isNaN(loc.coords[1])) return;
+
+      const marker = L.marker(loc.coords, { icon: customIcon });
+
+      const popupContent = `
+        <div class="p-1">
+    <h4 class="text-sm font-bold text-gray-800 flex items-center gap-2 mb-1">
+      <!-- SVG ikona MapPin s tvojou fialovou farbou namiesto React komponentu -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#81007f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-purple-600 flex-shrink-0" style="display: inline-block; vertical-align: middle;">
+        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.74a1.095 1.095 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      ${loc.city}
+    </h4>
+    <p class="text-[10px] text-gray-600">${loc.description}</p>
+  </div>
+      `;
+
+      marker.bindPopup(popupContent, { minWidth: 180, className: "custom-popup" });
+
+      marker.on("click", () => {
+        onClickRef.current(loc.id);
+      });
+
+      // AUTOMATICKÉ OTVORENIE PRE PREDVOLENÚ UDALOSŤ PRI PRVOM NAČÍTANÍ
+      if (loc.id === defaultOpenId) {
+        marker.on("add", () => {
+          setTimeout(() => {
+            // Otvorí popup a plynule naň vycentruje mapu
+            marker.openPopup();
+            map.setView(loc.coords, map.getZoom());
+          }, 200); // Malé oneskorenie, aby Leaflet stihol marker bezpečne vykresliť
+        });
+      }
+
+      markerClusterGroup.addLayer(marker);
+      markers.push(marker);
+    });
+
+    map.addLayer(markerClusterGroup);
+
+    return () => {
+      map.removeLayer(markerClusterGroup);
+    };
+  }, [map, locations, defaultOpenId]); // Odstránili sme onMarkerClick zo závislostí
+
+  return null;
+}
 
 export function MapSection() {
   const [locations, setLocations] = useState([]);
@@ -26,7 +97,7 @@ export function MapSection() {
   const [activeLocation, setActiveLocation] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(null);
   const [isImageLoading, setIsImageLoading] = useState(false);
-  const [selectedLocationId, setSelectedLocationId] = useState(1);
+  const [selectedLocationId, setSelectedLocationId] = useState(null);
 
   // NAČÍTANIE DÁT ZO SUPABASE
   useEffect(() => {
@@ -34,15 +105,30 @@ export function MapSection() {
       try {
         setLoading(true);
         const { data, error } = await supabase.from("Actions").select("*");
-        //console.log("Načítané lokácie zo Supabase:", data);
 
         if (error) throw error;
 
-        setLocations(data || []);
-        
-        // Predvolene označíme prvú načítanú lokalitu, ak nejaká existuje
-        if (data && data.length > 0) {
-          setSelectedLocationId(1);
+        // Ochrana pred neplatnými dátami
+        const validData = (data || []).filter(
+          (loc) =>
+            Array.isArray(loc.coords) &&
+            loc.coords.length === 2 &&
+            !isNaN(loc.coords[0]) &&
+            !isNaN(loc.coords[1]) &&
+            loc.coords[0] !== null &&
+            loc.coords[1] !== null
+        );
+
+        setLocations(validData);
+
+        const hasDefaultId = validData.some(loc => loc.id === 13);
+
+        if (hasDefaultId) {
+          // Ak ID 13 existuje, necháme ho aktívne (netreba nič meniť, v stave už je 13)
+          setSelectedLocationId(13);
+        } else if (validData.length > 0) {
+          // Ak ID 13 v databáze nie je, ako zálohu zvolíme prvú načítanú lokalitu
+          setSelectedLocationId(validData[0].id);
         }
       } catch (error) {
         console.error("Chyba pri načítaní lokácií:", error.message);
@@ -54,10 +140,16 @@ export function MapSection() {
     fetchLocations();
   }, []);
 
-  const handleMarkerClick = (locId) => {
+  const handleMarkerClick = useCallback((locId) => {
     setSelectedLocationId(locId);
-    document.getElementById('side-panel').scrollIntoView({ behavior: 'smooth' });
-  };
+    // Malý timeout zabezpečí, že sa DOM stihne pripraviť, ak sa bočný panel práve vykresľuje
+    setTimeout(() => {
+      const element = document.getElementById('side-panel');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 50);
+  }, []);
 
   const openLightbox = (location, index) => {
     setActiveLocation(location);
@@ -92,19 +184,6 @@ export function MapSection() {
     return () => { document.body.style.overflow = 'unset'; }
   }, [activeImageIndex]);
 
-  /*
-  const locations = [
-    {
-      id: 1,
-      city: "Skalica",
-      description: "Vianočné trhy 2025",
-      coords: [48.84612012770536, 17.22889819851306],
-      images: [trhy1, trhy2, trhy3, trhy4],
-      event: "Naša prvá „veľká“ akcia v rámci občianskeho združenia Nebuď ľahostajný sa konala počas adventného obdobia, keď sme mali možnosť byť súčasťou vianočných trhov v Skalici. Vďaka podpore organizátora sme mali na trhoch vlastný stánok, v ktorom sme rozdávali dobrú náladu, úsmevy a radi sme sa podelili s návštevníkmi o množstvo sladkých dobrôt. Na vianočných trhoch sme spojili sily aj so Sandrou z Varimeblog, ktorá nám napiekla množstvo výborných domácich maškŕt. Aj vďaka nej mal náš stánok krásnu atmosféru a návštevníci si mohli pochutnať na niečom naozaj výnimočnom. Tiež s naším sponzorom LiFicaffe okienko s perfektnou kávičkou, ktorá voňala široko ďaleko. :) Výťažok zo zbierky sme následne použili na nákup vianočných darčekov pre deti a na pomoc rodinám v rámci okresu Skalica. Pomoc mala rôzne podoby – od potravinovej pomoci až po hygienické potreby pre rodiny, ktoré to najviac potrebujú. Zo srdca ďakujeme všetkým, ktorí sa pri našom stánku zastavili, podporili nás a stali sa súčasťou tejto krásnej myšlienky. Aj vďaka vám môžeme pomáhať tam, kde je to najviac potrebné. Zároveň ďakujeme organizatorovi pánovi Hrehorovi, vďaka ktorému sme sa mohli stánkov zúčastniť. Nebuďme ľahostajní ❤️"
-    },
-  ];
-  */
-
   const displayedLocations = selectedLocationId ? locations.filter(l => l.id === selectedLocationId) : [];
 
   if (loading) {
@@ -127,43 +206,23 @@ export function MapSection() {
 
             {/* HLAVNÝ KONTAJNER (GRID) */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              
-              
 
               {/* MAPA */}
               <div className="lg:col-span-2 relative rounded-2xl overflow-hidden shadow-xl h-[500px] z-0 border-4 border-white">
-                <MapContainer 
-                  center={ [48.482869, 17.175551] /*[48.851037, 17.230965]*/} 
-                  zoom={8/*15*/} 
+                <MapContainer
+                  center={[48.482869, 17.175551]}
+                  zoom={8}
                   style={{ height: "100%", width: "100%" }}
                   scrollWheelZoom={false}
                 >
-                  <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" attribution='&copy; OSM'/>
+                  <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" attribution='&copy; OSM' />
 
-                  {locations.map((loc) => (
-                    <Marker 
-                      key={loc.id} 
-                      position={loc.coords} 
-                      icon={customIcon}
-                      eventHandlers={{
-                        add: (e) => {
-                          if (loc.id === 1) {
-                            e.target.openPopup(); // Leaflet sám otvorí popup hneď, ako sa vykreslí
-                          }
-                        },
-                        click: () => handleMarkerClick(loc.id), // REAKCIA NA KLIK
-                      }}
-                    >
-                      <Popup minWidth={180} className="custom-popup">
-                        <div className="p-1">
-                          <h4 className="text-sm font-bold text-gray-800 flex items-center gap-2 mb-1">
-                             <MapPin className="w-4 h-4 text-purple-600" /> {loc.city}
-                          </h4>
-                          <p className="text-[10px] text-gray-600">{loc.description}</p>
-                        </div>
-                      </Popup>
-                    </Marker>
-                  ))}
+                  {/* Klastrovanie s priamo mapovanými dátami */}
+                  <MarkerClusterGroup
+                    locations={locations}
+                    onMarkerClick={handleMarkerClick}
+                    defaultOpenId={selectedLocationId}
+                  />
                 </MapContainer>
               </div>
 
@@ -180,14 +239,12 @@ export function MapSection() {
                           <h4 className="text-xl font-bold text-gray-800">{loc.city}</h4>
                         </div>
                         {selectedLocationId && (
-                           <button onClick={() => setSelectedLocationId(null)} className="text-gray-400 hover:text-red-500">
-                              <X size={20} />
-                           </button>
+                          <button onClick={() => setSelectedLocationId(null)} className="text-gray-400 hover:text-red-500">
+                            <X size={20} />
+                          </button>
                         )}
                       </div>
-                      <p className="text-justify text-gray-600 text-sm leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: loc.event }}>
-                        
-                      </p>
+                      <p className="text-justify text-gray-600 text-sm leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: loc.event }} />
 
                       <GalleryStack images={loc.images} onOpenLightbox={(index) => openLightbox(loc, index)} />
                     </div>
@@ -199,13 +256,14 @@ export function MapSection() {
                   </div>
                 )}
               </div>
-            
+
             </div>
           </div>
         </div>
       </div>
-      
-      {activeImageIndex !== null && createPortal (
+
+      {/* LIGHTBOX */}
+      {activeImageIndex !== null && createPortal(
         <div onClick={closeLightbox} className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-300" >
           <button className="absolute top-6 right-6 text-white hover:text-purple-400 transition-colors z-[10000]">
             <X size={40} />
@@ -217,13 +275,12 @@ export function MapSection() {
           )}
 
           <div className="max-w-7xl max-h-[90vh] relative flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
-
             {isImageLoading && (
               <div className="absolute inset-0 flex items-center justify-center z-10">
                 <Loader2 className="w-12 h-12 text-purple-500 animate-spin" />
               </div>
             )}
-            <img key={activeImageIndex} src={activeLocation.images[activeImageIndex]} 
+            <img key={activeImageIndex} src={activeLocation.images[activeImageIndex]}
               className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300"
               onLoad={() => setIsImageLoading(false)}
               alt="Detail"
@@ -233,9 +290,8 @@ export function MapSection() {
                 Fotka {activeImageIndex + 1} / {activeLocation.images.length}
               </div>
             )}
-            
           </div>
-          
+
           {activeLocation.images.length > 1 && (
             <button onClick={nextImage} className="absolute right-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
               <ChevronRight size={60} />
@@ -243,7 +299,7 @@ export function MapSection() {
           )}
         </div>, document.body
       )}
-      
+
       {/* CSS pre Leaflet Popup aby ladil s tvojím UI */}
       <style jsx="true" global="true" >{`
         .leaflet-popup-content-wrapper {
@@ -256,6 +312,22 @@ export function MapSection() {
         }
         .leaflet-container {
           font-family: inherit !important;
+        }
+        .marker-cluster-small {
+          background-color: rgba(129, 0, 127, 0.2) !important;
+        }
+        .marker-cluster-small div {
+          background-color: rgba(129, 0, 127, 0.6) !important;
+          color: white !important;
+          font-weight: bold;
+        }
+        .marker-cluster-medium {
+          background-color: rgba(129, 0, 127, 0.3) !important;
+        }
+        .marker-cluster-medium div {
+          background-color: rgba(129, 0, 127, 0.8) !important;
+          color: white !important;
+          font-weight: bold;
         }
       `}</style>
     </section>

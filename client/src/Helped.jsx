@@ -47,7 +47,7 @@ export function HelpedSection() {
           console.error("Error fetching actions:", error);
         } else {
           setActions(formattedData);
-          console.log("Actions state updated:", actions);
+          //console.log("Actions state updated:", actions);
         }
 
       } catch (err) {

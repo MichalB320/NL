@@ -97,7 +97,7 @@ export function AdminMembers() {
       if (editingId) {
         const { error: dbError } = await supabase.from("Member").update(rowData).eq("id", editingId);
         if (dbError) throw new Error("Chyba pri úprave v databáze: " + dbError.message);
-        console.log("Úspešne upravené pre id: ", editingId, ", dáta: ", rowData);
+        //console.log("Úspešne upravené pre id: ", editingId, ", dáta: ", rowData);
         alert("Záznam úspešne upravený!");
       } else {
         const { error: dbError } = await supabase.from("Member").insert([rowData]);
