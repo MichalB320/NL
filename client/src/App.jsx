@@ -11,9 +11,11 @@ import { HelpButton } from './HelpButton'
 import { Projects } from './Projects.jsx'
 import { CookieConsent } from './CookieConsent.jsx'
 import { HelpedSection } from './Helped.jsx'
-import { MapSection} from './Map.jsx';
+import { MapSection } from './Map.jsx';
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { AdminPage } from './Admin.jsx';
+import { AuctionModal } from './components/AuctionModal.jsx'
+import { Megaphone } from "lucide-react"; // Ikonka pre vrchný pásik
 import varime from './assets/partneri/varime-logo-slogan.png';
 import jozef from './assets/partneri/logo_jozef.png';
 import lificaffe from './assets/partneri/lificaffe-logo.png';
@@ -21,6 +23,15 @@ import dm from './assets/partneri/dm.png';
 
 function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const hasSeenPromo = localStorage.getItem("seenAuctionPromo");
+    if (!hasSeenPromo) {
+      setIsModalOpen(true);
+      localStorage.setItem("seenAuctionPromo", "true"); // Zapamätá si, že už videl, aby neotravoval pri každom prekliku
+    }
+  }, []);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -55,8 +66,8 @@ function App() {
 
       const options = {
         root: null,
-        rootMargin: '-30% 0px -65% 0px', 
-        threshold: [0, 0.1, 0.5, 0.9], 
+        rootMargin: '-30% 0px -65% 0px',
+        threshold: [0, 0.1, 0.5, 0.9],
       };
 
       const observer = new IntersectionObserver((entries) => {
@@ -72,7 +83,7 @@ function App() {
 
       sections.forEach((s) => observer.observe(s));
       return observer;
-   };
+    };
 
     let observerInstance = startObserver();
 
@@ -93,6 +104,16 @@ function App() {
 
   return (
     <div className="min-h-screen min-w-full bg-gradient-to-br from-purple-100 via-violet-50 to-indigo-100">
+
+      <div onClick={() => setIsModalOpen(true)} className="bg-gradient-to-r from-[#81007f] to-[#b000ae] text-white py-2.5 px-4 text-center text-xs md:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer hover:opacity-95 transition-all shadow-md z-[999] relative">
+        <span className="flex h-2 w-2 relative">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+        </span>
+        <Megaphone size={16} className="animate-bounce" />
+        <span>Pripravujeme veľkú charitatívnu dražbu pre rodiny v núdzi! Kliknite pre viac informácií.</span>
+      </div>
+      <AuctionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       {/*}
       <div 
         style={{
@@ -125,7 +146,7 @@ function App() {
         <HelpedSection />
         <MapSection />
         {hasConsent ? (
-          <FacebookFeed url={mojadresa}/>
+          <FacebookFeed url={mojadresa} />
         ) : (
           <div className="max-w-4xl mx-auto my-10 p-10 bg-white/50 rounded-3xl border-2 border-dashed border-purple-200 text-center">
             <p className="text-gray-600">
@@ -135,35 +156,36 @@ function App() {
         )}
         <Contact />
       </main>
+
       {/* Sekcia PARNERI */}
       <div className="mt-4 pb-15">
         <p className="text-center text-xl font-semibold uppercase tracking-widest text-gray-400 mb-8">
           Naši partneri
         </p>
-  
+
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 transition-all duration-500">
 
           <div className="h-20 md:h-28 w-40 md:w-52 flex items-center justify-center grayscale hover:grayscale-0">
             <a href="https://www.varime.blog/" target="_blank" rel="noopener noreferrer" className="h-full w-full, flex items-center justify-center hover:scale-110 hover:grayscale-0 transition-transform">
-              <ImageWithFallback src={varime} className="max-h-full max-w-full object-contain"/>
+              <ImageWithFallback src={varime} className="max-h-full max-w-full object-contain" />
             </a>
           </div>
-    
+
           <div className="h-20 md:h-28 w-40 md:w-52 flex items-center justify-center grayscale hover:grayscale-0">
             <a href="https://lificaffe.cz/" target="_blank" rel="noopener noreferrer" className="h-full w-full flex items-center justify-center hover:scale-110 hover:grayscale-0 transition-transform">
-            <ImageWithFallback src={lificaffe} className="max-h-full max-w-full object-contain"/>
+              <ImageWithFallback src={lificaffe} className="max-h-full max-w-full object-contain" />
             </a>
           </div>
-    
+
           <div className="h-20 md:h-28 w-40 md:w-52 flex items-center justify-center grayscale hover:grayscale-0">
             <a href="https://jozefdruhy.sk/" target="_blank" rel="noopener noreferrer" className="h-full w-full flex items-center justify-center hover:scale-110 hover:grayscale-0 transition-transform">
-              <ImageWithFallback src={jozef} className="max-h-full max-w-full object-contain"/> 
+              <ImageWithFallback src={jozef} className="max-h-full max-w-full object-contain" />
             </a>
           </div>
 
           <div className="h-20 md:h-28 w-40 md:w-52 flex items-center justify-center grayscale hover:grayscale-0">
             <a href="https://mojadm.sk/" target="_blank" rel="noopener noreferrer" className="h-full w-full flex items-center justify-center hover:scale-110 hover:grayscale-0 transition-transform">
-              <ImageWithFallback src={dm} className="max-h-full max-w-full object-contain"/> 
+              <ImageWithFallback src={dm} className="max-h-full max-w-full object-contain" />
             </a>
           </div>
 
