@@ -2,6 +2,63 @@ import React, { useState, useEffect } from "react";
 import { supabase } from "./../supabaseClient.js";
 import { Loader2, PlusCircle, Image, Pencil, Trash2, X } from "lucide-react";
 
+/**
+ * Pomocná funkcia na zmenšenie a kompresiu obrázka v prehliadači
+ */
+const compressImage = (file, maxWidth = 1000, maxHeight = 1000, quality = 0.9) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new window.Image();
+      img.src = event.target.result;
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+
+        // Prepočítanie rozmerov so zachovaním pomeru strán
+        if (width > height) {
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // Skomprimovanie do formátu image/webp (alebo image/jpeg)
+        canvas.toBlob(
+          (blob) => {
+            if (blob) {
+              const compressedFile = new File([blob], file.name.replace(/\.[^/.]+$/, ".webp"), {
+                type: "image/webp",
+                lastModified: Date.now(),
+              });
+              resolve(compressedFile);
+            } else {
+              reject(new Error("Kompresia obrázka zlyhala."));
+            }
+          },
+          "image/webp",
+          quality
+        );
+      };
+      img.onerror = (err) => reject(err);
+    };
+    reader.onerror = (err) => reject(err);
+  });
+};
+
 export function AdminMembers() {
   const [members, setMembers] = useState([]);
   const [loadingMembers, setLoadingMembers] = useState(true);
@@ -81,11 +138,12 @@ export function AdminMembers() {
 
     try {
       if (file) {
-        const fileExt = file.name.split('.').pop();
-        const fileName = `${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`;
+        //const fileExt = file.name.split('.').pop();
+        const compressedFile = await compressImage(file, 1000, 1000, 0.9);
+        const fileName = `${Date.now()}_${Math.random().toString(36).substring(7)}.webp`;
         const filePath = `o-nas/${fileName}`;
 
-        const { error: uploadError } = await supabase.storage.from("NeLa-bucket").upload(filePath, file);
+        const { error: uploadError } = await supabase.storage.from("NeLa-bucket").upload(filePath, compressedFile/* file */);
         if (uploadError) throw new Error("Chyba pri nahrávaní obrázka: " + uploadError.message);
 
         const uploadUrlResult = supabase.storage.from("NeLa-bucket").getPublicUrl(filePath);
