@@ -145,17 +145,17 @@ export function Header() {
 
         {isDonateVisible && showDonateInfo && (
           <div className="absolute top-full left-0 right-0 bg-white border-t-4 border-[#81007f] shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300 z-40">
-            <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-2 gap-1 items-start">
+            <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 md:grid-cols-2 gap-1 items-start">
 
               {/* ĽAVÁ STRANA: TEXT */}
               <div className="space-y-4">
-                <h3 className="text-sm font-black text-[#81007f] uppercase tracking-widest">
+                <h3 className="text-xs lg:text-sm font-black text-[#81007f] uppercase tracking-widest">
                   CHUDOBA NIE JE VOĽBA. POMOC ÁNO.
                 </h3>
-                <p className="text-2xl font-bold text-gray-900 leading-tight">
+                <p className="text-xl lg:text-2xl font-bold text-gray-900 leading-tight">
                   Z Vašich 2% dane pomôžeme rodinám v núdzi zvládnuť ťažké dni.
                 </p>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
                   Aj ty môžeš pomôcť ľuďom a deťom v ťažkej životnej situácii – darovaním 2 % zo svojich daní. Podporíš tým našu prácu v rodinách, pomoc deťom, matkám a ľuďom, ktorí sa ocitli v kríze.
                 </p>
 
@@ -163,27 +163,27 @@ export function Header() {
 
               {/* PRAVÁ STRANA: ÚDAJE (KARTA) */}
               <div className="flex flex-col gap-3">
-                <h4 className="text-lg font-bold text-[#81007f] flex items-center pt-6">
+                <h4 className="text-base lg:text-lg font-bold text-[#81007f] flex items-center pt-6">
                   Údaje pre darovanie 2%:
                 </h4>
                 <div className="bg-violet-50 p-2 rounded-3xl border-2 border-violet-100 shadow-inner relative">
 
                   <div className="space-y-2">
                     <div className="group relative">
-                      <p className="text-[10px] uppercase font-black text-violet-400 tracking-tighter">Názov:</p>
-                      <p className="text-lg font-bold text-gray-800">NELA-Nebuď ľahostajný</p>
+                      <p className="text-[9px] lg:text-[10px] uppercase font-black text-violet-400 tracking-tighter">Názov:</p>
+                      <p className="text-base lg:text-lg font-bold text-gray-800">NELA-Nebuď ľahostajný</p>
                     </div>
 
                     <div className="flex justify-between items-end border-t border-violet-200 pt-4">
                       <div>
-                        <p className="text-[10px] uppercase font-black text-violet-400 tracking-tighter">IČO:</p>
-                        <p className="text-lg font-mono font-black text-[#81007f]">56216211</p>
+                        <p className="text-[9px] lg:text-[10px] uppercase font-black text-violet-400 tracking-tighter">IČO:</p>
+                        <p className="text-base lg:text-lg font-mono font-black text-[#81007f]">56216211</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-xs font-semibold text-red-600 flex items-center pt-3">
+                <p className="text-xs md:text-sm font-semibold text-red-600 flex items-center pt-3">
                   Vyhlásenie je potrebné podať do 30. apríla.
                 </p>
               </div>
