@@ -1,7 +1,7 @@
 import { ImageWithFallback } from "./figma/ImageWithFallback.jsx";
 import { Heart, Quote } from "lucide-react";
 import Logo from './assets/logo.png';
-import HandsImg from "./assets/hands_helping.png";
+import HandsImg from "./assets/hands_helping.webp";
 
 export function Hero() {
   const scrollToSection = (id) => {
@@ -12,13 +12,13 @@ export function Hero() {
   };
 
   return (
-    <section id="domov" className="py-20 px-4 relative bg-gradient-to-br from-purple-80 via-violet-80 to-indigo-100 overflow-hidden min-h-screen flex items-center">
+    <section id="domov" className="py-20 px-2 md:px-4 lg:px-4 relative bg-gradient-to-br from-purple-80 via-violet-80 to-indigo-100 overflow-hidden min-h-screen flex items-center">
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        <div className="bg-white/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 p-7 md:p-12 lg:p-16">
+        <div className="bg-white/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 p-5 md:p-10 lg:p-16">
           
           {/* PRVÝ RIADOK: Otázka a Obrázok */}
           <div className="grid md:grid-cols-2 gap-10 items-center mb-10">
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center py-4">
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-purple-300 blur-2xl"/>
                 <div className="w-46 h-46 md:w-82 md:h-42 rounded-full overflow-hidden border-[10px] border-white shadow-2xl relative z-10">

@@ -46,10 +46,10 @@ export function Action({ action }) {
 
   return (
     <div className="bg-white/70 rounded-3xl overflow-hidden shadow-lg border border-violet/50">
-      <div className="p-8 md:p-10 flex flex-col lg:flex-row lg:gap-15 items-center lg:items-start">
+      <div className="p-6 md:p-10 flex flex-col lg:flex-row lg:gap-15 items-center lg:items-start">
         <div className="flex-1 w-full">
         {/* Hlavička akcie */}
-        <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between gap-4 pt-3 mb-6">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3 md:mb-0 sm:max-w-[72%]">
             {action.title}
           </h2>
@@ -72,7 +72,7 @@ export function Action({ action }) {
 
       {/*<GalleryStack images={action.images} onOpenLightbox={(index) => openLightbox(index)} />*/}
         {/* Galéria ako balíček fotiek */}
-        <div className="flex-shrink-0 flex justify-center pt-10 md:py-10 pr-5 md:pr-12"> 
+        <div className="flex-shrink-0 flex justify-center pt-3 md:py-10 pr-5 md:pr-12"> 
           <div onClick={() => openLightbox(0)} className="relative w-44 h-44 md:w-80 md:h-[400px] cursor-pointer group">
             {action.images.slice(0, 3).map((image, index) => (
               <div key={index} className="absolute inset-0 transition-all duration-500 ease-out shadow-xl rounded-2xl overflow-hidden border-1 border-violet/50" style={{
@@ -106,13 +106,13 @@ export function Action({ action }) {
           onClick={closeLightbox}
         >
           {/* Tlačidlo zavrieť */}
-          <button className="absolute top-6 right-6 text-white hover:text-purple-400 transition-colors z-[10000]">
+          <button className="absolute top-6 right-6 text-white hover:text-purple-400 transition-colors z-[10000] cursor-pointer">
             <X size={40} />
           </button>
 
           {/* Šípky */}
           {action.images.length > 1 && (
-            <button onClick={prevImage} className="absolute left-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
+            <button onClick={prevImage} className="absolute left-4 p-2 text-white/50 hover:text-white transition-all z-[10000] cursor-pointer">
               <ChevronLeft size={60} />
             </button>
           )}
@@ -139,7 +139,7 @@ export function Action({ action }) {
             
           </div>
           {action.images.length > 1 && (
-            <button onClick={nextImage} className="absolute right-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
+            <button onClick={nextImage} className="absolute right-4 p-2 text-white/50 hover:text-white transition-all z-[10000] cursor-pointer">
               <ChevronRight size={60} />
             </button>
           )}

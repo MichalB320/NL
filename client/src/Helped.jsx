@@ -1,19 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Action } from "./components/Action.jsx";
-/*
-import MariolaMikulas from "./assets/pomohli-sme/mariola_mikulas.jpeg";
-import Deti from "./assets/pomohli-sme/deti.jpg";
-import DetiMikulas from "./assets/pomohli-sme/deti_mikulas.jpeg";
-import JankoBalicek from "./assets/pomohli-sme/IMG_4668.jpeg";
-import Balik from "./assets/pomohli-sme/IMG_4648.jpeg";
-import Clenky from "./assets/pomohli-sme/IMG_0816.jpeg";
-import Adam from "./assets/pomohli-sme/IMG_4496.jpeg";
-import Plysak from "./assets/pomohli-sme/mariola_plysak.jpeg";
-import OZ from "./assets/pomohli-sme/OZ.jpg";
-import Sabi from "./assets/pomohli-sme/sabi.jpeg";
-import DM from "./assets/pomohli-sme/dm.jpeg";
-import DM2 from "./assets/pomohli-sme/dm2.jpeg";
-*/
 import { supabase } from "./supabaseClient";
 
 export function HelpedSection() {
@@ -61,12 +47,12 @@ export function HelpedSection() {
  
 
   return (
-    <section id="pomohli-sme" className="py-20 px-4 relative bg-gradient-to-bl from-indigo-100 via-white to-purple-100">
+    <section id="pomohli-sme" className="py-20 px-2 md:px-4 lg:px-4 relative bg-gradient-to-bl from-indigo-100 via-white to-purple-100">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Main glass card container */}
-        <div className="bg-white/60 rounded-3xl shadow-2xl border border-white/30 p-5 md:p-12 lg:p-16">
+        <div className="bg-white/60 rounded-3xl shadow-2xl border border-white/30 p-3 md:p-6 lg:p-12">
           {/* Header */}    
-          <div className="text-center mb-10">
+          <div className="text-center pt-5 mb-10">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
               Pomohli sme
             </h1>
@@ -77,7 +63,7 @@ export function HelpedSection() {
           </div>
 
           {/* Actions list */}
-          <div className="space-y-12">
+          <div className="space-y-9">
             {actions.map((action) => (
               <Action key={action.id} action={action}/>
             ))}

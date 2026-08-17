@@ -192,7 +192,7 @@ export function AdminMembers() {
 
   return (
     <div className="space-y-12">
-      <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 p-6 rounded-2xl border border-gray-150">
+      <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 p-4 md:p-6 rounded-2xl border border-gray-150">
         <div className="flex justify-between items-center mb-2">
           <label className="text-xl font-bold text-gray-800">
             {editingId ? "Upraviť členku tímu" : "Pridať novú členku"}

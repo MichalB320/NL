@@ -52,12 +52,12 @@ export function Contact() {
   ];
 
   return (
-    <section id="kontakt" className="py-20 px-4 relative">
+    <section id="kontakt" className="py-20 px-2 md:px-4 relative">
       
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="bg-white/70 rounded-3xl shadow-xl border border-white/30 p-8 md:p-12 lg:p-16">
-          <div className="text-center mb-16">
+        <div className="bg-white/70 rounded-3xl shadow-xl border border-white/30 p-4 md:p-12 lg:p-16">
+          <div className="text-center pt-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Ozvite sa nám</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Neváhajte nás kontaktovať. Či už potrebujete pomoc, alebo chcete pomôcť iným.

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import './App.css'
 import { Header } from './Header.jsx'
 import { Hero } from './Hero.jsx'
@@ -11,27 +11,28 @@ import { HelpButton } from './HelpButton'
 import { Projects } from './Projects.jsx'
 import { CookieConsent } from './CookieConsent.jsx'
 import { HelpedSection } from './Helped.jsx'
-import { MapSection } from './Map.jsx';
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { AdminPage } from './Admin.jsx';
-import { AuctionModal } from './components/AuctionModal.jsx'
-import { Megaphone } from "lucide-react"; // Ikonka pre vrchný pásik
+import { Megaphone, Loader2 } from "lucide-react"; // Ikonka pre vrchný pásik
 import varime from './assets/partneri/varime-logo-slogan.png';
 import jozef from './assets/partneri/logo_jozef.png';
 import lificaffe from './assets/partneri/lificaffe-logo.png';
 import dm from './assets/partneri/dm.png';
 
+const AdminPage = lazy(() => import('./Admin.jsx').then(m => ({ default: m.AdminPage })));
+const AuctionModal = lazy(() => import('./components/AuctionModal.jsx').then(m => ({ default: m.AuctionModal })));
+const MapSection = lazy(() => import('./Map.jsx').then(m => ({ default: m.MapSection })));
+
 function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const hasSeenPromo = localStorage.getItem("seenAuctionPromo");
-    if (!hasSeenPromo) {
-      setIsModalOpen(true);
-      localStorage.setItem("seenAuctionPromo", "true"); // Zapamätá si, že už videl, aby neotravoval pri každom prekliku
-    }
-  }, []);
+  // useEffect(() => {
+  //   const hasSeenPromo = localStorage.getItem("seenAuctionPromo");
+  //   if (!hasSeenPromo) {
+  //     setIsModalOpen(true);
+  //     localStorage.setItem("seenAuctionPromo", "true"); // Zapamätá si, že už videl, aby neotravoval pri každom prekliku
+  //   }
+  // }, []);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -99,7 +100,15 @@ function App() {
   }, [currentHash]);
 
   if (currentHash.startsWith("#/admin")) {
-    return <AdminPage />;
+    return (
+      <Suspense fallback={
+        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+          <Loader2 className="text-purple-600 animate-spin" size={40} />
+        </div>
+      }>
+        <AdminPage />
+      </Suspense>
+    );
   }
 
   return (
@@ -113,7 +122,9 @@ function App() {
         <Megaphone size={16} className="animate-bounce" />
         <span>Pripravujeme veľkú charitatívnu dražbu pre rodiny v núdzi! Kliknite pre viac informácií.</span>
       </div>
-      <AuctionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Suspense fallback={null}>
+        {isModalOpen && <AuctionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
+      </Suspense>
       {/*}
       <div 
         style={{
@@ -144,7 +155,9 @@ function App() {
         <About />
         <Projects />
         <HelpedSection />
-        <MapSection />
+        <Suspense fallback={<div className="h-96 flex items-center justify-center text-gray-400">Načítavam mapu...</div>}>
+          <MapSection />
+        </Suspense>
         {hasConsent ? (
           <FacebookFeed url={mojadresa} />
         ) : (

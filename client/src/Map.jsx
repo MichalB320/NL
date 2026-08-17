@@ -196,10 +196,10 @@ export function MapSection() {
   }
 
   return (
-    <section id="videli-ste-nas" className="py-20 px-4 relative">
+    <section id="videli-ste-nas" className="py-20 px-2 md:px-4 lg:px-4 relative">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100">
-          <div className="p-8 md:p-10">
+          <div className="p-5 md:p-10">
             <div className="text-center mb-8">
               <h3 className="text-2xl md:text-3xl font-bold text-gray-800">Kde všade ste nás mohli vidieť</h3>
             </div>
@@ -239,7 +239,7 @@ export function MapSection() {
                           <h4 className="text-xl font-bold text-gray-800">{loc.city}</h4>
                         </div>
                         {selectedLocationId && (
-                          <button onClick={() => setSelectedLocationId(null)} className="text-gray-400 hover:text-red-500">
+                          <button onClick={() => setSelectedLocationId(null)} className="text-gray-400 hover:text-red-500 cursor-pointer">
                             <X size={20} />
                           </button>
                         )}
@@ -265,11 +265,11 @@ export function MapSection() {
       {/* LIGHTBOX */}
       {activeImageIndex !== null && createPortal(
         <div onClick={closeLightbox} className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-300" >
-          <button className="absolute top-6 right-6 text-white hover:text-purple-400 transition-colors z-[10000]">
+          <button className="absolute top-6 right-6 text-white hover:text-purple-400 transition-colors z-[10000] cursor-pointer">
             <X size={40} />
           </button>
           {activeLocation.images.length > 1 && (
-            <button onClick={prevImage} className="absolute left-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
+            <button onClick={prevImage} className="absolute left-4 p-2 text-white/50 hover:text-white transition-all z-[10000] cursor-pointer">
               <ChevronLeft size={60} />
             </button>
           )}
@@ -293,7 +293,7 @@ export function MapSection() {
           </div>
 
           {activeLocation.images.length > 1 && (
-            <button onClick={nextImage} className="absolute right-4 p-2 text-white/50 hover:text-white transition-all z-[10000]">
+            <button onClick={nextImage} className="absolute right-4 p-2 text-white/50 hover:text-white transition-all z-[10000] cursor-pointer">
               <ChevronRight size={60} />
             </button>
           )}

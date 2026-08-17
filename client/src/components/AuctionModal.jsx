@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, Sparkles, Trophy, Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import zigopodpis from "./../assets/pripravujeme/IMG_4016.jpeg";
-import slubpodpis from "./../assets/pripravujeme/IMG_4017.jpeg";
+import slubpodpis from "./../assets/pripravujeme/IMG_4017.webp";
 import podpis from "./../assets/pripravujeme/IMG_4019.jpeg";
 import vitaminy from "./../assets/pripravujeme/IMG_4030.jpeg";
 import trickopodpis from "./../assets/pripravujeme/IMG_4036.jpeg"

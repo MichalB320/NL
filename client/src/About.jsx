@@ -104,13 +104,13 @@ export function About() {
   // ];
   
   return (
-    <section id="o-nas" className="py-20 px-4 relative">
+    <section id="o-nas" className="py-20 px-2 md:px-4 lg:px-4 relative">
       {/* Decorative elements */}
       <div className="absolute top-40 right-20 w-72 h-72 bg-amber-300/20 rounded-full blur-3xl"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Glass card container */}
-        <div className="bg-white/50  rounded-3xl shadow-2xl border border-white/30 p-5 md:p-12 lg:p-16">
+        <div className="bg-white/50  rounded-3xl shadow-2xl border border-white/30 p-4 md:p-6 lg:p-12">
           
 
           {/* Team Section */}

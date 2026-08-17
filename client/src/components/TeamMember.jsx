@@ -12,7 +12,7 @@ export function TeamMember({ name, role, description, image, icon: Icon, quote }
   } 
 
   return (
-    <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-amber-50/80 backdrop-blur-none lg:backdrop-blur-lg rounded-3xl p-6 md:p-12 shadow-xl border border-violet/50">
+    <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-amber-50/80 backdrop-blur-none lg:backdrop-blur-lg rounded-3xl p-4 md:p-8 lg:p-12 shadow-xl border border-violet/50">
       <div className="grid md:grid-cols-3 gap-8 items-start">
                 
         {/* Foto a meno */}

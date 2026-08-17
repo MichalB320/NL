@@ -88,12 +88,12 @@ export function AdminPage() {
   };
 
   return (
-    <div className="min-h-screen bg-purple-100 p-4 md:p-8 flex items-center justify-center">
-      <div className="w-full max-w-5xl flex flex-col md:flex-row gap-6 items-start">
+    <div className="min-h-screen bg-purple-100 p-2 md:p-6 flex items-center justify-center">
+      <div className="w-full max-w-5xl flex flex-col md:flex-row gap-8 items-start">
         
         {/* AKTÍVNY FORMULÁR */}
-        <div className="flex-1 w-full bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-100 order-2 md:order-1">
-          <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-8 border-b pb-4 gap-4">
+        <div className="flex-1 w-full bg-white rounded-3xl shadow-xl p-3 md:p-8 border border-gray-100 order-2 md:order-1">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center pt-2 mb-8 border-b pb-4 gap-4">
             <div>
               <h1 className="text-2xl font-bold text-gray-800">
                 Správa sekcie: {menuItems.find(item => item.id === currentHash)?.label || "Pomohli sme"}
