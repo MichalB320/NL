@@ -2,7 +2,6 @@ import { Calendar, X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom"; 
 import { ImageWithFallback } from "../figma/ImageWithFallback.jsx";
-import GalleryStack from "./GalleryStack.jsx";
 
 export function Action({ action }) {
   const [isExpanded, setIsExpanded] = useState(false);

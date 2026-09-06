@@ -1,7 +1,5 @@
 import { Facebook, Instagram, Mail, Phone, MapPin, Heart } from "lucide-react";
-import { ImageWithFallback } from "./figma/ImageWithFallback"; // uprav cestu ak je komponent inde
-
-// Importy log partnerov (uisti sa, že cesty zodpovedajú tvojej štruktúre)
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 import varime from './assets/partneri/varime-logo-slogan.png';
 import jozef from './assets/partneri/logo_jozef.png';
 import lificaffe from './assets/partneri/lificaffe-logo.png';
