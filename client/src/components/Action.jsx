@@ -45,26 +45,26 @@ export function Action({ action }) {
   }, [activeImageIndex]);
 
   return (
-    <div className="bg-white/70 rounded-3xl overflow-hidden shadow-lg border border-violet/50">
+    <div className="bg-white/70 dark:bg-slate-900/60 dark:backdrop-blur-xl rounded-3xl overflow-hidden shadow-lg dark:shadow-purple-950/50 border border-violet-200/50 dark:border-purple-800/40 transition-colors duration-300">
       <div className="p-6 md:p-10 flex flex-col lg:flex-row lg:gap-15 items-center lg:items-start">
         <div className="flex-1 w-full">
         {/* Hlavička akcie */}
         <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between gap-4 pt-3 mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3 md:mb-0 sm:max-w-[72%]">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-3 md:mb-0 sm:max-w-[72%] transition-colors">
             {action.title}
           </h2>
-          <div className="self-end md:self-auto inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-400/20 to-fuchsia-400/20 backdrop-blur-sm rounded-full border border-purple-300/30">
-            <Calendar className="w-4 h-4 text-[#81007f]" />
-            <span className="text-sm font-medium text-gray-700">{action.date}</span>
+          <div className="self-end md:self-auto inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-400/20 to-fuchsia-400/20 dark:from-purple-900/40 dark:to-fuchsia-900/40 backdrop-blur-sm rounded-full border border-purple-300/30 dark:border-purple-700/40">
+            <Calendar className="w-4 h-4 text-[#81007f] dark:text-fuchsia-300" />
+            <span className="text-sm font-medium text-gray-700 dark:text-purple-200">{action.date}</span>
           </div>
         </div>
 
         {/* Popis akcie s funkciou Zobraziť viac */}
         <div className="mb-8">
-          <p className={`text-justify text-gray-700 text-sm leading-relaxed ${!isExpanded ? "line-clamp-4 lg:line-clamp-none" : "lg:line-clamp-none"}`} dangerouslySetInnerHTML={{ __html: action.description }}>
+          <p className={`text-justify text-gray-700 dark:text-gray-200 text-sm leading-relaxed transition-colors ${!isExpanded ? "line-clamp-4 lg:line-clamp-none" : "lg:line-clamp-none"}`} dangerouslySetInnerHTML={{ __html: action.description }}>
             
           </p>
-          <button onClick={toggleDescription} className="lg:hidden mt-2 text-[#81007f] font-bold text-sm hover:underline">
+          <button onClick={toggleDescription} className="lg:hidden mt-2 text-[#81007f] dark:text-fuchsia-400 font-bold text-sm hover:underline">
             {isExpanded ? "Zobraziť menej" : "zobraziť viac"}
           </button>
         </div>
@@ -75,7 +75,7 @@ export function Action({ action }) {
         <div className="flex-shrink-0 flex justify-center pt-3 md:py-10 pr-5 md:pr-12"> 
           <div onClick={() => openLightbox(0)} className="relative w-44 h-44 md:w-80 md:h-[400px] cursor-pointer group">
             {action.images.slice(0, 3).map((image, index) => (
-              <div key={index} className="absolute inset-0 transition-all duration-500 ease-out shadow-xl rounded-2xl overflow-hidden border-1 border-violet/50" style={{
+              <div key={index} className="absolute inset-0 transition-all duration-500 ease-out shadow-xl rounded-2xl overflow-hidden border border-violet-200/50 dark:border-purple-700/40" style={{
                 // Posun a rotácia pre efekt naskladaných kariet
                 transform: `translateX(${index * 10}px) translateY(${index * -8}px) rotate(${index * 2}deg)`,
                 // Nižšie indexy sú pod vrchnou fotkou
@@ -88,7 +88,7 @@ export function Action({ action }) {
         
                 {/* Na poslednej (spodnej) viditeľnej fotke ukážeme počet zvyšných fotiek */}
                 {index === Math.min(action.images.length - 1, 2) && action.images.length > 3 && (
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-bold text-xl">
+                  <div className="absolute inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center text-white font-bold text-xl">
                     + {action.images.length - 3}
                   </div>
                )}
@@ -121,7 +121,7 @@ export function Action({ action }) {
 
             {isImageLoading && (
               <div className="absolute inset-0 flex items-center justify-center z-10">
-                <Loader2 className="w-12 h-12 text-purple-500 animate-spin" />
+                <Loader2 className="w-12 h-12 text-purple-400 animate-spin" />
               </div>
             )}
             <img 

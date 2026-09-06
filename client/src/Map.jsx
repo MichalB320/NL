@@ -20,8 +20,6 @@ const customIcon = new L.Icon({
 function MarkerClusterGroup({ locations, onMarkerClick, defaultOpenId }) {
   const map = useMap();
 
-  // Použijeme ref na callback, aby sme nemuseli spúšťať celý useEffect znova
-  // pri každej zmene referencie funkcie handleMarkerClick
   const onClickRef = useRef(onMarkerClick);
   useEffect(() => {
     onClickRef.current = onMarkerClick;
@@ -37,8 +35,6 @@ function MarkerClusterGroup({ locations, onMarkerClick, defaultOpenId }) {
       chunkedLoading: true
     });
 
-    const markers = [];
-
     locations.forEach((loc) => {
       if (!loc.coords || !Array.isArray(loc.coords) || loc.coords.length !== 2) return;
       if (isNaN(loc.coords[0]) || isNaN(loc.coords[1])) return;
@@ -47,16 +43,15 @@ function MarkerClusterGroup({ locations, onMarkerClick, defaultOpenId }) {
 
       const popupContent = `
         <div class="p-1">
-    <h4 class="text-sm font-bold text-gray-800 flex items-center gap-2 mb-1">
-      <!-- SVG ikona MapPin s tvojou fialovou farbou namiesto React komponentu -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#81007f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-purple-600 flex-shrink-0" style="display: inline-block; vertical-align: middle;">
-        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.74a1.095 1.095 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"/>
-        <circle cx="12" cy="10" r="3"/>
-      </svg>
-      ${loc.city}
-    </h4>
-    <p class="text-[10px] text-gray-600">${loc.description}</p>
-  </div>
+          <h4 class="text-sm font-bold text-gray-800 flex items-center gap-2 mb-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-purple-500 flex-shrink-0" style="display: inline-block; vertical-align: middle;">
+              <path d="M20 10c0 4.993-5.539 10.193-7.399 11.74a1.095 1.095 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            ${loc.city}
+          </h4>
+          <p class="text-[10px] text-gray-600">${loc.description}</p>
+        </div>
       `;
 
       marker.bindPopup(popupContent, { minWidth: 180, className: "custom-popup" });
@@ -65,19 +60,16 @@ function MarkerClusterGroup({ locations, onMarkerClick, defaultOpenId }) {
         onClickRef.current(loc.id);
       });
 
-      // AUTOMATICKÉ OTVORENIE PRE PREDVOLENÚ UDALOSŤ PRI PRVOM NAČÍTANÍ
       if (loc.id === defaultOpenId) {
         marker.on("add", () => {
           setTimeout(() => {
-            // Otvorí popup a plynule naň vycentruje mapu
             marker.openPopup();
             map.setView(loc.coords, map.getZoom());
-          }, 200); // Malé oneskorenie, aby Leaflet stihol marker bezpečne vykresliť
+          }, 200);
         });
       }
 
       markerClusterGroup.addLayer(marker);
-      markers.push(marker);
     });
 
     map.addLayer(markerClusterGroup);
@@ -85,7 +77,7 @@ function MarkerClusterGroup({ locations, onMarkerClick, defaultOpenId }) {
     return () => {
       map.removeLayer(markerClusterGroup);
     };
-  }, [map, locations, defaultOpenId]); // Odstránili sme onMarkerClick zo závislostí
+  }, [map, locations, defaultOpenId]);
 
   return null;
 }
@@ -99,7 +91,6 @@ export function MapSection() {
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [selectedLocationId, setSelectedLocationId] = useState(null);
 
-  // NAČÍTANIE DÁT ZO SUPABASE
   useEffect(() => {
     async function fetchLocations() {
       try {
@@ -108,7 +99,6 @@ export function MapSection() {
 
         if (error) throw error;
 
-        // Ochrana pred neplatnými dátami
         const validData = (data || []).filter(
           (loc) =>
             Array.isArray(loc.coords) &&
@@ -124,10 +114,8 @@ export function MapSection() {
         const hasDefaultId = validData.some(loc => loc.id === 13);
 
         if (hasDefaultId) {
-          // Ak ID 13 existuje, necháme ho aktívne (netreba nič meniť, v stave už je 13)
           setSelectedLocationId(13);
         } else if (validData.length > 0) {
-          // Ak ID 13 v databáze nie je, ako zálohu zvolíme prvú načítanú lokalitu
           setSelectedLocationId(validData[0].id);
         }
       } catch (error) {
@@ -142,7 +130,6 @@ export function MapSection() {
 
   const handleMarkerClick = useCallback((locId) => {
     setSelectedLocationId(locId);
-    // Malý timeout zabezpečí, že sa DOM stihne pripraviť, ak sa bočný panel práve vykresľuje
     setTimeout(() => {
       const element = document.getElementById('side-panel');
       if (element) {
@@ -189,8 +176,8 @@ export function MapSection() {
   if (loading) {
     return (
       <div className="py-20 flex flex-col items-center justify-center min-h-[400px]">
-        <Loader2 className="w-12 h-12 text-purple-600 animate-spin mb-4" />
-        <p className="text-gray-500 italic">Načítavam mapu a podujatia...</p>
+        <Loader2 className="w-12 h-12 text-purple-600 dark:text-fuchsia-400 animate-spin mb-4" />
+        <p className="text-gray-500 dark:text-purple-300/60 italic">Načítavam mapu a podujatia...</p>
       </div>
     );
   }
@@ -198,26 +185,30 @@ export function MapSection() {
   return (
     <section id="videli-ste-nas" className="py-20 px-2 md:px-4 lg:px-4 relative">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+        <div className="bg-white/70 dark:bg-slate-900/60 dark:backdrop-blur-xl rounded-3xl overflow-hidden shadow-lg dark:shadow-purple-950/50 border border-violet-200/50 dark:border-purple-800/40 transition-colors duration-300">
           <div className="p-5 md:p-10">
             <div className="text-center mb-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-800">Kde všade ste nás mohli vidieť</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white transition-colors">Kde všade ste nás mohli vidieť</h3>
             </div>
 
             {/* HLAVNÝ KONTAJNER (GRID) */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
               {/* MAPA */}
-              <div className="lg:col-span-2 relative rounded-2xl overflow-hidden shadow-xl h-[500px] z-0 border-4 border-white">
+              <div className="lg:col-span-2 relative rounded-2xl overflow-hidden shadow-xl h-[500px] z-0 border-4 border-white dark:border-purple-900/40">
                 <MapContainer
                   center={[48.482869, 17.175551]}
                   zoom={8}
                   style={{ height: "100%", width: "100%" }}
                   scrollWheelZoom={false}
                 >
-                  <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" attribution='&copy; OSM' />
+                  {/* Svetlé dlaždice pre light mode */}
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    className="dark:invert dark:hue-rotate-180 dark:brightness-90 dark:contrast-90 transition-all duration-300"
+                  />
 
-                  {/* Klastrovanie s priamo mapovanými dátami */}
                   <MarkerClusterGroup
                     locations={locations}
                     onMarkerClick={handleMarkerClick}
@@ -230,29 +221,29 @@ export function MapSection() {
               <div id="side-panel" className="lg:col-span-1 scroll-mt-30 md:scroll-mt-45 space-y-6 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
                 {displayedLocations.length > 0 ? (
                   displayedLocations.map((loc) => (
-                    <div key={loc.id} className="group p-6 bg-gray-50 rounded-2xl border-2 border-purple-100 shadow-sm animate-in fade-in slide-in-from-right-4 duration-500">
+                    <div key={loc.id} className="group p-6 bg-gray-50/80 dark:bg-slate-800/50 rounded-2xl border-2 border-purple-100 dark:border-purple-800/40 shadow-sm animate-in fade-in slide-in-from-right-4 duration-500">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-3">
-                          <div className="p-2 text-[#81007f] bg-purple-100 rounded-xl">
+                          <div className="p-2 text-[#81007f] dark:text-fuchsia-300 bg-purple-100 dark:bg-purple-900/50 rounded-xl">
                             <MapPin className="w-5 h-5" />
                           </div>
-                          <h4 className="text-xl font-bold text-gray-800">{loc.city}</h4>
+                          <h4 className="text-xl font-bold text-gray-800 dark:text-white">{loc.city}</h4>
                         </div>
                         {selectedLocationId && (
-                          <button onClick={() => setSelectedLocationId(null)} className="text-gray-400 hover:text-red-500 cursor-pointer">
+                          <button onClick={() => setSelectedLocationId(null)} className="text-gray-400 hover:text-red-500 dark:text-purple-300/50 dark:hover:text-red-400 cursor-pointer transition-colors">
                             <X size={20} />
                           </button>
                         )}
                       </div>
-                      <p className="text-justify text-gray-600 text-sm leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: loc.event }} />
+                      <p className="text-justify text-gray-600 dark:text-gray-200 text-sm leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: loc.event }} />
 
                       <GalleryStack images={loc.images} onOpenLightbox={(index) => openLightbox(loc, index)} />
                     </div>
                   ))
                 ) : (
-                  <div className="h-full flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-gray-200 rounded-2xl">
-                    <MapPin className="w-12 h-12 text-gray-300 mb-4" />
-                    <p className="text-gray-500 italic">Kliknite na špendlík na mape pre zobrazenie detailov o udalosti.</p>
+                  <div className="h-full flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-gray-200 dark:border-purple-800/40 rounded-2xl">
+                    <MapPin className="w-12 h-12 text-gray-300 dark:text-purple-700/50 mb-4" />
+                    <p className="text-gray-500 dark:text-purple-300/60 italic">Kliknite na špendlík na mape pre zobrazenie detailov o udalosti.</p>
                   </div>
                 )}
               </div>
@@ -300,36 +291,69 @@ export function MapSection() {
         </div>, document.body
       )}
 
-      {/* CSS pre Leaflet Popup aby ladil s tvojím UI */}
-      <style jsx="true" global="true" >{`
+      {/* CSS PRE LEAFLET POPUP A KLASTRE PRISPOSOBENE DARK MODU */}
+      <style jsx="true" global="true">{`
+        /* Svetlý režim (default) */
         .leaflet-popup-content-wrapper {
           border-radius: 1.5rem !important;
           padding: 0.5rem !important;
           box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1) !important;
+          background-color: #ffffff !important;
+          color: #1f2937 !important;
         }
         .leaflet-popup-tip {
-          background: white !important;
+          background: #ffffff !important;
         }
+
+        /* Tmavý režim (override pri .dark) */
+        .dark .leaflet-popup-content-wrapper {
+          background-color: #0f172a !important;
+          border: 1px solid rgba(168, 85, 247, 0.4) !important;
+          box-shadow: 0 20px 25px -5px rgba(58, 12, 92, 0.6) !important;
+          color: #f3e8ff !important;
+        }
+        .dark .leaflet-popup-tip {
+          background: #0f172a !important;
+        }
+        .dark .leaflet-popup-content h4 {
+        color: #ffffff !important;
+        }
+        .dark .leaflet-popup-content p {
+        color: #e9d5ff !important;
+        }
+
         .leaflet-container {
           font-family: inherit !important;
         }
         .marker-cluster-small {
           background-color: rgba(129, 0, 127, 0.2) !important;
         }
+        .dark .marker-cluster-small {
+          background-color: rgba(168, 85, 247, 0.25) !important;
+        }
         .marker-cluster-small div {
           background-color: rgba(129, 0, 127, 0.6) !important;
           color: white !important;
           font-weight: bold;
         }
+        .dark .marker-cluster-small div {
+          background-color: rgba(168, 85, 247, 0.7) !important;
+        }
         .marker-cluster-medium {
           background-color: rgba(129, 0, 127, 0.3) !important;
+        }
+        .dark .marker-cluster-medium {
+          background-color: rgba(168, 85, 247, 0.35) !important;
         }
         .marker-cluster-medium div {
           background-color: rgba(129, 0, 127, 0.8) !important;
           color: white !important;
           font-weight: bold;
         }
-      `}</style>
+        .dark .marker-cluster-medium div {
+          background-color: rgba(168, 85, 247, 0.9) !important;
+        }
+`     }</style>
     </section>
   );
 }

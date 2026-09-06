@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
 import { Heart, Sparkles, Loader2 } from "lucide-react";
-// import Mariola from './assets/o-nas/mariola.jpg';
-// import Lenka from './assets/o-nas/lenka.jpg';
-// import Lesana from './assets/o-nas/lesana.jpg';
-// import Dominika from './assets/o-nas/dominika.jpg';
 import { TeamMember } from './components/TeamMember.jsx';
 import { supabase } from "./supabaseClient.js";
 
@@ -17,7 +13,6 @@ export function About() {
         setLoading(true);
         
         const { data, error } = await supabase.from("Member").select("*").order("id", { ascending: true });
-        //console.log("Načítané údaje o tíme zo Supabase:", data);
 
         if (error) throw error;
 
@@ -36,86 +31,23 @@ export function About() {
   if (loading) {
     return (
       <div className="py-20 flex flex-col items-center justify-center min-h-[400px]">
-        <Loader2 className="w-12 h-12 text-purple-600 animate-spin mb-4" />
-        <p className="text-gray-500 italic">Načítavam členov tímu...</p>
+        <Loader2 className="w-12 h-12 text-purple-600 dark:text-purple-400 animate-spin mb-4" />
+        <p className="text-gray-500 dark:text-gray-400 italic">Načítavam členov tímu...</p>
       </div>
     );
   }
-
-  // const teamData = [
-  //   {
-  //     id: 1,
-  //     name: "Mariola Janíková",
-  //     role: "Zakladateľka OZ Nebuď ľahostajný",
-  //     image: Mariola, 
-  //     icon: Heart,
-  //     quote: "Nebuď ľahostajný nie je len názov - je to moja životná cesta. A budem rada, ak sa na ňu pridáte aj vy.",
-  //     description: (
-  //       <>
-  //         <p key="p1" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Volám sa <strong>Mariola Janíková</strong> a som zakladateľka OZ Nebuď ľahostajný. V minulosti som pracovala ako manažérka prosperujúcej firmy, no cítila som, že potrebujem ísť inou cestou. Po vyštudovaní som začala pracovať v sociálnej sfére, kde pôsobím už šesť rokov.</p>
-  //         <p key="p2" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Pracujem s ľuďmi závislými, bez domova, s týranými osobami či s deťmi, ktoré nikdy nepoznali stabilný domov. Pomáham plniť sny chorým deťom, aj tým, ktoré bojujú o posledné chvíle svojho života. Príbehy týchto ľudí sú plné bolesti, strachu a rezignácie… a niekedy sa pýtam samej seba, prečo je pre nich také ťažké prestať opakovať tie isté chyby.</p>
-  //         <p key="p3" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Ale viem, že aj ja robím chyby a celoživotne sa na nich učím. Prešla som si v živote rôznymi skúškami a práve tie ma naučili byť viac autentická a chápavá. Vďaka nim viem, aké dôležité je pristupovať k ľuďom s empatiou, trpezlivosťou a otvoreným srdcom.</p>
-  //         <p key="p4" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Za sebou mám niekoľko akreditovaných výcvikov: krízovú intervenciu, psychologickú a sociálnu pomoc v krízových situáciách prostredníctvom internetu a tiež odborných výcvikov projektový špecialista, projektový manažér, motivačné rozhovory v práci s klientami v sociálnoprávnej ochrane detí a sociálnej kurately, prípadová sociálna práca, sociálna práca a sociálne služby, metódy a techniky sociálnej práce a iné.</p>
-  //       </>
-  //     ) 
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Lenka",
-  //     role: "Členka tímu",
-  //     image: Lenka,
-  //     icon: Sparkles,
-  //     quote: "Aj malé skutky môžu viesť k veľkým zmenám.",
-  //     description: (
-  //       <>
-  //         <p key="p1" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4"><strong>Lenka</strong>  je členkou nášho tímu. Je všestrannou ženou pôsobiacou v rôznych organizáciách, ktorá má bohaté skúsenosti z viacerých oblastí sociálneho aj ekonomického života. Vďaka tomu dokáže vidieť súvislosti, chápať širší kontext problémov a ponúkať praktické riešenia. Aktuálne pracuje ako sociálna pracovníčka so zameraním sa na maloleté deti. Denne sa stretáva s rodinami v zložitých životných situáciach, ktoré vyžadujú pochopenie, trpezlivosť a odbornosť.</p>
-  //         <p key="p2" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Vo svojej praxi pomáha ľuďom zorientovať sa v ťažkých situáciách, hľadať riešenia a znovu nachádzať istotu. Počúva bez súdenia, podporuje a sprevádza krok za krokom.</p>
-  //         <p key="p3" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Ako sama tvrdí naučila sa nevšímať si problémy ľudí len z diaľky. Verí, že aj malé skutky môžu viesť k veľkým zmenám a že aktívny záujem o spoločnosť má zmysel.</p>
-  //       </>
-  //     )
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Lesana",
-  //     role: "Členka tímu",
-  //     image: Lesana,
-  //     icon: Sparkles,
-  //     quote: "Je dôkazom toho, že aj bežný človek môže byť silnou oporou pre iných.",
-  //     description: (
-  //     <>
-  //       <p key="p1" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4"><strong>Lesana</strong> je členkou nášho tímu. Je to mama troch detí, ktorá má veľké srdce a dlhodobo sa venuje podpore žien v ťažkých životných situáciách.</p>
-  //       <p key="p2" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4">Organizuje zbierky, pomáha obetiam domáceho násilia a stojí po boku žien, ktoré potrebujú oporu. Počúva, motivuje a sprevádza.</p>
-  //     </>
-  //     )
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Dominika",
-  //     role: "Členka tímu",
-  //     image: Dominika,//"https://images.unsplash.com/photo-1563263427-708318a97183?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RoZXIlMjBjaGlsZHJlbiUyMGZhbWlseSUyMHdhcm18ZW58MXx8fHwxNzcwMjc3Mzg4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  //     icon: Sparkles,
-  //     quote: "",
-  //     description: (
-  //     <>
-  //       <p key="p1" className="text-gray-700 text-center md:text-justify leading-relaxed mb-4"><strong>Dominika</strong> je plnohodnotnou členkou nášho tímu. Má bohaté skúsenosti s prácou s ľuďmi, je prirodzene spoločenská a ku každej výzve pristupuje s odhodlaním a riešením. Žiadny problém pre ňu nie je neriešiteľný – vždy hľadá cestu, ako veci posunúť vpred. Do tímu prináša energiu, elán a pozitívnu náladu, ktorá je často nákazlivá a motivuje aj ostatných.</p>
-  //     </>
-  //     )
-  //   }
-  // ];
   
   return (
-    <section id="o-nas" className="py-20 px-2 md:px-4 lg:px-4 relative">
+    <section id="o-nas" className="py-20 px-2 md:px-4 lg:px-4 relative transition-colors duration-300">
       {/* Decorative elements */}
-      <div className="absolute top-40 right-20 w-72 h-72 bg-amber-300/20 rounded-full blur-3xl"></div>
+      <div className="absolute top-40 right-20 w-72 h-72 bg-amber-300/20 dark:bg-amber-500/10 rounded-full blur-3xl"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Glass card container */}
-        <div className="bg-white/50  rounded-3xl shadow-2xl border border-white/30 p-4 md:p-6 lg:p-12">
-          
-
+        <div className="bg-white/50 dark:bg-indigo-950/70 backdrop-blur-xl rounded-3xl shadow-2xl dark:shadow-fuchsia-950/50 border border-white/30 dark:border-fuchsia-500/20 p-4 md:p-6 lg:p-12 transition-colors duration-300">
           {/* Team Section */}
           <div className="space-y-8">
-            <h1 className="text-3xl font-bold text-gray-800 text-center mb-3">
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-white text-center mb-3 transition-colors">
               Náš tím
             </h1>
 

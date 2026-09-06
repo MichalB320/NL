@@ -52,14 +52,14 @@ export function Contact() {
   ];
 
   return (
-    <section id="kontakt" className="py-20 px-2 md:px-4 relative">
+    <section id="kontakt" className="py-20 px-2 md:px-4 relative transition-colors duration-300">
       
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="bg-white/70 rounded-3xl shadow-xl border border-white/30 p-4 md:p-12 lg:p-16">
+        <div className="bg-white/70 dark:bg-slate-900/60 dark:backdrop-blur-xl rounded-3xl shadow-xl border border-white/30 dark:border-purple-800/40 p-4 md:p-12 lg:p-16 transition-colors">
           <div className="text-center pt-4 mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Ozvite sa nám</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4 transition-colors">Ozvite sa nám</h2>
+            <p className="text-lg text-gray-600 dark:text-purple-200/80 max-w-3xl mx-auto transition-colors">
               Neváhajte nás kontaktovať. Či už potrebujete pomoc, alebo chcete pomôcť iným.
             </p>
           </div>
@@ -70,20 +70,20 @@ export function Contact() {
               const isClickable = !!info.link;
               
               // Spoločné štýly pre kartu
-              const cardClass = `bg-white rounded-2xl p-6 shadow-sm transition-all duration-300 flex flex-col items-center text-center border border-violet/20 ${
-                isClickable ? "hover:shadow-xl hover:border-purple-200 cursor-pointer group" : ""
+              const cardClass = `bg-white dark:bg-slate-800/80 rounded-2xl p-6 shadow-sm transition-all duration-300 flex flex-col items-center text-center border border-violet/20 dark:border-purple-800/30 ${
+                isClickable ? "hover:shadow-xl hover:border-purple-200 dark:hover:border-purple-500 cursor-pointer group" : ""
               }`;
 
               // Obsah karty
               const cardContent = (
                 <>
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 rounded-xl mb-4 group-hover:scale-110 transition-transform">
-                    <IconComponent className="text-[#81007f]" size={24} />
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 dark:bg-purple-950/60 rounded-xl mb-4 group-hover:scale-110 transition-transform">
+                    <IconComponent className="text-[#81007f] dark:text-purple-300" size={24} />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">{info.title}</h3>
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3 transition-colors">{info.title}</h3>
                   <div className="space-y-1">
                     {info.details.map((detail, dIdx) => (
-                      <p key={dIdx} className="text-gray-600 text-sm">{detail}</p>
+                      <p key={dIdx} className="text-gray-600 dark:text-purple-200/70 text-sm transition-colors">{detail}</p>
                     ))}
                   </div>
                 </>

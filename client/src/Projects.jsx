@@ -17,21 +17,21 @@ export function Projects() {
     {
       icon: Backpack,
       title: "Batôžtek nádeje",
-      image: Taska, //"https://images.unsplash.com/photo-1654112260750-62e27953e9fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2hvb2wlMjBiYWNrcGFjayUyMHN1cHBsaWVzJTIwY2hpbGRyZW58ZW58MXx8fHwxNzcwMjc3MzkwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: Taska,
       description: "Pripravte školskú tašku alebo batôžtek s pomôckami pre dieťa, ktoré to potrebuje. Vhodné sú zošity, perá, pastelky, peračníky, pravítka či športové vrecúška.",
       help: "Ak chcete, pridajte aj krátky povzbudivý odkaz - poteší rovnako ako darované veci."
     },
     {
       icon: Bus,
       title: "Nabi kartu - daruj cestu",
-      image: Aut_Karta, //"https://images.unsplash.com/photo-1758908176211-5bd0932f956a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwdWJsaWMlMjB0cmFuc3BvcnQlMjBjYXJkJTIwdHJhdmVsfGVufDF8fHx8MTc3MDI3NzM5MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: Aut_Karta,
       description: "Mnohé deti zo sociálne slabších rodín sa nedostanú do školy alebo na krúžky, pretože si nemôžu dovoliť cestu autobusom. Deti však nemôžu za situáciu svojich rodičov.",
       help: "Aj malý príspevok znamená, že dieťa sa dostane tam, kam potrebuje."
     },
     {
       icon: Gift,
       title: "Mikulášsky balíček",
-      image: Mik_balik,//"https://images.unsplash.com/photo-1640672927297-c559cfc7b5a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHJpc3RtYXMlMjBnaWZ0cyUyMGNoaWxkcmVuJTIwcGFja2FnZXN8ZW58MXx8fHwxNzcwMjc3MzkwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: Mik_balik,
       description: "Spravte radosť dieťaťu na Mikuláša! Môžete pripraviť vlastný balíček so sladkosťami a drobnosťami.",
       help: "Alebo nám prispieť finančne - balíček radi pripravíme za vás."
     },
@@ -45,17 +45,17 @@ export function Projects() {
   ];
 
   return (
-    <section id="nase-projekty" className="py-20 bg-gradient-to-b from-white to-purple-50">
+    <section id="nase-projekty" className="py-20 bg-gradient-to-b from-white to-purple-50 dark:from-slate-950 dark:via-purple-950/40 dark:to-indigo-950 transition-colors duration-300">
       <div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4 transition-colors">
               Naše projekty
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
+            <p className="text-lg text-gray-600 dark:text-purple-200/80 max-w-3xl mx-auto leading-relaxed mb-8 transition-colors">
               Vaša pomoc môže mať mnoho podôb. Vyberte si tú, ktorá je vám najbližšia.
             </p>
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] rounded-full">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] dark:bg-purple-600 rounded-full shadow-lg dark:shadow-purple-900/50">
               <Heart className="text-white w-5 h-5 fill-white" />
               <span className="font-semibold text-white">Podaj pomocnú ruku</span>
             </div>
@@ -68,7 +68,7 @@ export function Projects() {
             return (
               <div
                 key={index}
-                className="min-w-[80vw] md:min-w-[400px] snap-center bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                className="min-w-[80vw] md:min-w-[400px] snap-center bg-white dark:bg-purple-950/50 dark:backdrop-blur-xl rounded-3xl overflow-hidden shadow-lg dark:shadow-purple-950/60 border border-transparent dark:border-purple-800/40 hover:shadow-xl dark:hover:border-purple-500/50 transition-all duration-300"
               >
                 <div className="h-44">
                   <ImageWithFallback src={project.image} alt={project.title} className="w-full h-full object-cover" />
@@ -77,20 +77,20 @@ export function Projects() {
                 <div className="p-6 md:p-8">
                   <div className="flex items-start gap-4 mb-4">
                     <div>
-                      <div className="flex flex items-center gap-4 mb-3">
-                        <div className="flex-shrink-0 w-9 h-9 bg-purple-100 rounded-xl flex items-center justify-center">
-                          <IconComponent className="text-[#81007f]" size={19} />
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="flex-shrink-0 w-9 h-9 bg-purple-100 dark:bg-purple-900/60 rounded-xl flex items-center justify-center">
+                          <IconComponent className="text-[#81007f] dark:text-purple-300" size={19} />
                         </div>
-                        <h3 className="text-xl font-bold text-gray-800">
+                        <h3 className="text-xl font-bold text-gray-800 dark:text-white">
                           {project.title}
                         </h3>
                       </div>
                       
-                      <p className="text-gray-600 leading-relaxed mb-4 text-center text-sm">
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 text-center text-sm">
                         {project.description}
                       </p>
-                      <div className="bg-gradient-to-r from-rose-50 to-amber-50 rounded-xl p-4 border-l-4 border-[#81007f]">
-                        <p className="text-gray-700 leading-relaxed font-medium text-xs">
+                      <div className="bg-gradient-to-r from-rose-50 to-amber-50 dark:from-purple-900/40 dark:to-indigo-900/40 rounded-xl p-4 border-l-4 border-[#81007f] dark:border-purple-400">
+                        <p className="text-gray-700 dark:text-purple-200 leading-relaxed font-medium text-xs">
                           💝 {project.help}
                         </p>
                       </div>
@@ -103,7 +103,7 @@ export function Projects() {
                         const element = document.getElementById("kontakt");
                         if (element) element.scrollIntoView({ behavior: "smooth" });
                       }}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] text-white rounded-full hover:bg-[#6a0069] hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#81007f] dark:bg-purple-600 text-white rounded-full hover:bg-[#6a0069] dark:hover:bg-purple-500 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
                     >
                       <Heart className="w-4 h-4 fill-white" />
                       Chcem pomôcť
